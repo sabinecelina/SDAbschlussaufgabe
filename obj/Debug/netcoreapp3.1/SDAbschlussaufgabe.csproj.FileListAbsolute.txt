@@ -1,0 +1,11 @@
+C:\Users\Sabine Schleise\Documents\MIB4\Softwaredesign\Abschlussaufgabe\GitHub\SDAbschlussaufgabe\bin\Debug\netcoreapp3.1\SDAbschlussaufgabe.exe
+C:\Users\Sabine Schleise\Documents\MIB4\Softwaredesign\Abschlussaufgabe\GitHub\SDAbschlussaufgabe\bin\Debug\netcoreapp3.1\SDAbschlussaufgabe.deps.json
+C:\Users\Sabine Schleise\Documents\MIB4\Softwaredesign\Abschlussaufgabe\GitHub\SDAbschlussaufgabe\bin\Debug\netcoreapp3.1\SDAbschlussaufgabe.runtimeconfig.json
+C:\Users\Sabine Schleise\Documents\MIB4\Softwaredesign\Abschlussaufgabe\GitHub\SDAbschlussaufgabe\bin\Debug\netcoreapp3.1\SDAbschlussaufgabe.runtimeconfig.dev.json
+C:\Users\Sabine Schleise\Documents\MIB4\Softwaredesign\Abschlussaufgabe\GitHub\SDAbschlussaufgabe\bin\Debug\netcoreapp3.1\SDAbschlussaufgabe.dll
+C:\Users\Sabine Schleise\Documents\MIB4\Softwaredesign\Abschlussaufgabe\GitHub\SDAbschlussaufgabe\bin\Debug\netcoreapp3.1\SDAbschlussaufgabe.pdb
+C:\Users\Sabine Schleise\Documents\MIB4\Softwaredesign\Abschlussaufgabe\GitHub\SDAbschlussaufgabe\obj\Debug\netcoreapp3.1\SDAbschlussaufgabe.csprojAssemblyReference.cache
+C:\Users\Sabine Schleise\Documents\MIB4\Softwaredesign\Abschlussaufgabe\GitHub\SDAbschlussaufgabe\obj\Debug\netcoreapp3.1\SDAbschlussaufgabe.AssemblyInfoInputs.cache
+C:\Users\Sabine Schleise\Documents\MIB4\Softwaredesign\Abschlussaufgabe\GitHub\SDAbschlussaufgabe\obj\Debug\netcoreapp3.1\SDAbschlussaufgabe.AssemblyInfo.cs
+C:\Users\Sabine Schleise\Documents\MIB4\Softwaredesign\Abschlussaufgabe\GitHub\SDAbschlussaufgabe\obj\Debug\netcoreapp3.1\SDAbschlussaufgabe.dll
+C:\Users\Sabine Schleise\Documents\MIB4\Softwaredesign\Abschlussaufgabe\GitHub\SDAbschlussaufgabe\obj\Debug\netcoreapp3.1\SDAbschlussaufgabe.pdb
