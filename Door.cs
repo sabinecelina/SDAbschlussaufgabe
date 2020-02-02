@@ -1,5 +1,3 @@
-using System;
-
 namespace AdventureGame
 {
     public class Door
