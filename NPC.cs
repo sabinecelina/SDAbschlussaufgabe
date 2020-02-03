@@ -6,7 +6,7 @@ namespace AdventureGame
         private int strength;
         public override void DisplayCharacter()
         {
-
+            
         }
     }
 }
