@@ -2,11 +2,11 @@ using System.Collections.Generic;
 
 namespace AdventureGame
 {
-    public class Player
+    public class Player : Characters
     {
-        private string name;
-        private int healthpoints;
-        private string characteristics;
-        private List<string> inventory;
+        public override void DisplayCharacter()
+        {
+
+        }
     }
 }
