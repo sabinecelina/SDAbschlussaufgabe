@@ -1,14 +1,8 @@
 using System.Collections.Generic;
-
 namespace AdventureGame
 {
-    public class NPC
+    public class NPC : Player
     {
-        private string name;
-        private int healthpoints;
         private int strength;
-        private int inventorySpace;
-        private string characteristics;
-
     }
 }
