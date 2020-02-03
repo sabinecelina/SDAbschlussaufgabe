@@ -6,8 +6,8 @@ namespace AdventureGame
     {
         private string name;
         private int healthpoints;
-        private string characteristics;
         private List<string> inventory;
-        public abstract void DisplayCharacter(); 
+        private string characteristics;
+        public abstract void DisplayCharacter();
     }
 }
