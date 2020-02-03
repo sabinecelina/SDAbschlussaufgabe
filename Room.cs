@@ -8,6 +8,10 @@ namespace AdventureGame
         private Door east;
         private Door south;
         private Door west;
+        int location;
+        private List<NPC> nPCs;
+        //special items which are usefull
+        private List<string> specialItem;
         private List<string> inventory;
 
     }
