@@ -33,11 +33,12 @@ namespace AdventureGame
         }
         public void TakeItem(string item)
         {
-            //TODO
+            inventory.Add(item);
+
         }
         public override void dropItem(string item)
         {
-            //TODO
+            inventory.Remove(item);
         }
         public void UseItem(string item)
         {

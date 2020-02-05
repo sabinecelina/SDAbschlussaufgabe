@@ -8,7 +8,7 @@ namespace AdventureGame
         public List<Room> _rooms;
         private Player _player;
         private bool _gameOver = false;
-        private Room currentRoom;
+        private Room _currentRoom;
 
         public static void Main(string[] args)
         {
@@ -28,17 +28,17 @@ namespace AdventureGame
                     if (_rooms[i].location == 1)
                     {
                         _rooms[i].ShowRoomDescription();
-                        currentRoom = _rooms[i];
+                        _currentRoom = _rooms[i];
                     }
                     Console.WriteLine("What do you want to do?");
                     Console.Write(">");
 
                     string userInput = Console.ReadLine();
-
-                    switch (userInput)
+                    string[] input = userInput.Split(" ");
+                    switch (input[0])
                     {
                         case "l":
-                            currentRoom.ShowRoomDescription();
+                            _currentRoom.ShowRoomDescription();
                             break;
                         case "i":
                             _player.ShowInventory();
@@ -49,8 +49,14 @@ namespace AdventureGame
                         case "p":
                             _player.TakePotion();
                             break;
-
-
+                        case "t":
+                            _player.TakeItem(input[1]);
+                            _currentRoom.inventory.Remove(input[1]);
+                            break;
+                        case "d":
+                            _player.dropItem(input[1]);
+                            _currentRoom.inventory.Add(input[1]);
+                            break;
 
                     }
                 }

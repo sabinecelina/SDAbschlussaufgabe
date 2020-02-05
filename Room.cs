@@ -10,8 +10,8 @@ namespace AdventureGame
         private List<Door> doors;
         public List<NPC> nPCs;
         //special items which are usefull
-        private List<string> specialItem;
-        private List<string> inventory;
+        public List<string> specialItem;
+        public List<string> inventory;
 
         public Room(string nameOfRoom, int location, List<Door> doors, List<NPC> nPCs, List<string> inventory, List<string> specialItem)
         {
