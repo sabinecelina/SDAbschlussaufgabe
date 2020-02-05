@@ -2,9 +2,9 @@ namespace AdventureGame
 {
     public class Door
     {
-        private bool isOpen;
-        private bool exist;
-        private Room leadsTo;
-        private string howToOpen;
+        public string doorDirection;
+        public bool isOpen;
+        public Room leadsTo;
+        public string howToOpen;
     }
 }
