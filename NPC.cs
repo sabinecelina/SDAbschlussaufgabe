@@ -3,7 +3,7 @@ namespace AdventureGame
 {
     public class NPC : Characters
     {
-        private int strength;
+        public int strength;
         public bool isAlive = true;
         private string information;
         public NPC(string name, int healthpoints, List<string> inventory, string characteristics, int strength, string information) : base(name, healthpoints, inventory, characteristics)
