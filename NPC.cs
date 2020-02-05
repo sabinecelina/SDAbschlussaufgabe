@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 namespace AdventureGame
 {
@@ -11,9 +12,11 @@ namespace AdventureGame
             this.strength = strength;
             this.information = information;
         }
+
         public override void DisplayCharacter()
         {
-            //TODO
+            Console.WriteLine("I am :" + name + "My characteristics are: " + characteristics);
+            //TODO name: the warrior, the lucky one, the thief
         }
         public override void dropItem(string item)
         {
@@ -26,6 +29,10 @@ namespace AdventureGame
         public void changeRoom()
         {
             //TODO
+        }
+        public void GiveInformation()
+        {
+            Console.WriteLine(information);
         }
     }
 }

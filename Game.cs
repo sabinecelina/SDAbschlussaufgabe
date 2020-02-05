@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System;
 using System.Collections.Generic;
 
@@ -8,7 +9,8 @@ namespace AdventureGame
         public List<Room> _rooms;
         private Player _player;
         private bool _gameOver = false;
-        private Room _currentRoom;
+        protected Room _currentRoom;
+        private NPC _currentNPC;
 
         public static void Main(string[] args)
         {
@@ -35,6 +37,13 @@ namespace AdventureGame
 
                     string userInput = Console.ReadLine();
                     string[] input = userInput.Split(" ");
+                    List<NPC> _npc = _currentRoom.nPCs;
+                    for (int n = 0; n < _npc.Count; n++)
+                    {
+                        if (_npc[n].name == input[1])
+                            _currentNPC = _npc[n];
+                    }
+
                     switch (input[0])
                     {
                         case "l":
@@ -57,18 +66,28 @@ namespace AdventureGame
                             _player.dropItem(input[1]);
                             _currentRoom.inventory.Add(input[1]);
                             break;
+                        case "u":
+                            _player.UseItem();
+                            break;
+                        case "a":
+                            _player.AttackNPC(_currentNPC);
+                            break;
+                        case "ask":
+                            _currentNPC.GiveInformation();
+                            break;
 
                     }
                 }
             }
         }
+
         public void SaveGame()
         {
             //TODO
         }
         public void QuitGame()
         {
-            //TODO
+            Debugger.Break();
         }
     }
 }

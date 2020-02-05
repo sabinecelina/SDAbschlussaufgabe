@@ -1,4 +1,5 @@
 using System;
+using System.Windows;
 using System.Collections.Generic;
 
 namespace AdventureGame
@@ -40,9 +41,9 @@ namespace AdventureGame
         {
             inventory.Remove(item);
         }
-        public void UseItem(string item)
+        public void UseItem()
         {
-            //TODO
+            Console.WriteLine("Which item do you want to use?");
         }
         public void TakePotion()
         {
@@ -62,9 +63,10 @@ namespace AdventureGame
                 Console.WriteLine("You don't have a potion.");
 
         }
-        public void AttackNPC(NPC nPC)
+        public NPC AttackNPC(NPC _nPC)
         {
             //TODO
+            return _nPC;
         }
 
     }
