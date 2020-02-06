@@ -7,7 +7,7 @@ namespace AdventureGame
         public int strength;
         public bool isAlive = true;
         private string information;
-        public NPC(string name, int healthpoints, List<string> inventory, string characteristics, int strength, string information) : base(name, healthpoints, inventory, characteristics)
+        public NPC(string name, int healthpoints, List<Item> inventory, string characteristics, int strength, string information) : base(name, healthpoints, inventory, characteristics)
         {
             this.strength = strength;
             this.information = information;
@@ -18,7 +18,7 @@ namespace AdventureGame
             Console.WriteLine("I am :" + name + "My characteristics are: " + characteristics);
             //TODO name: the warrior, the lucky one, the thief
         }
-        public override void dropItem(string item)
+        public override void dropItem(Item item)
         {
             //TODO
         }

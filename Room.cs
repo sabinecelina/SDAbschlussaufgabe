@@ -9,29 +9,22 @@ namespace AdventureGame
         public int location;
         private List<Door> doors;
         public List<NPC> nPCs;
-        //special items which are usefull
-        public List<string> specialItem;
-        public List<string> inventory;
+        public List<Item> inventory;
 
-        public Room(string nameOfRoom, int location, List<Door> doors, List<NPC> nPCs, List<string> inventory, List<string> specialItem)
+        public Room(string nameOfRoom, int location, List<Door> doors, List<NPC> nPCs, List<Item> inventory)
         {
             this.nameOfRoom = nameOfRoom;
             this.location = location;
             this.doors = doors;
             this.nPCs = nPCs;
             this.inventory = inventory;
-            this.specialItem = specialItem;
         }
         public void ShowRoomDescription()
         {
             Console.WriteLine("You are in a " + nameOfRoom + ". You can see: ");
-            foreach (string _item in inventory)
+            foreach (Item _item in inventory)
             {
-                Console.WriteLine(_item);
-            }
-            foreach (string _specialItem in specialItem)
-            {
-                Console.WriteLine(_specialItem);
+                Console.WriteLine(_item.item.Key);
             }
             if (nPCs.Count != 0)
             {

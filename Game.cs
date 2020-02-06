@@ -11,6 +11,7 @@ namespace AdventureGame
         private bool _gameOver = false;
         protected Room _currentRoom;
         private NPC _currentNPC;
+        private Item _item;
 
         public static void Main(string[] args)
         {
@@ -25,7 +26,7 @@ namespace AdventureGame
             if (!_gameOver)
             {
 
-                for (int i = 0; i < _rooms.Count; i++)
+                for (int i = 0; i =< _rooms.Count; i++)
                 {
                     if (_rooms[i].location == 1)
                     {
@@ -43,6 +44,13 @@ namespace AdventureGame
                         if (_npc[n].name == input[1])
                             _currentNPC = _npc[n];
                     }
+                    for (int m = 0; m < _currentRoom.inventory.Count; i++)
+                    {
+                        if (_currentRoom.inventory[m].item.Key == input[1])
+                        {
+                            _item = _currentRoom.inventory[m];
+                        }
+                    }
 
                     switch (input[0])
                     {
@@ -59,18 +67,18 @@ namespace AdventureGame
                             _player.TakePotion();
                             break;
                         case "t":
-                            _player.TakeItem(input[1]);
-                            _currentRoom.inventory.Remove(input[1]);
+                            _player.TakeItem(_item);
+                            _currentRoom.inventory.Remove(_item);
                             break;
                         case "d":
-                            _player.dropItem(input[1]);
-                            _currentRoom.inventory.Add(input[1]);
+                            _player.dropItem(_item);
+                            _currentRoom.inventory.Add(_item);
                             break;
                         case "u":
                             _player.UseItem();
                             break;
                         case "a":
-                            _player.AttackNPC(_currentNPC);
+                            _currentNPC = _player.AttackNPC(_currentNPC);
                             break;
                         case "ask":
                             _currentNPC.GiveInformation();
