@@ -8,8 +8,7 @@ namespace AdventureGame
     {
         public int maxHealthpoints;
         public int numberOfPotion;
-        private Item item;
-        public Player(string name, int healthpoints, int maxHealthpoints, int numberOfPotion, List<Item> inventory, string characteristics) : base(name, healthpoints, inventory, characteristics)
+        public Player(string name, int healthpoints, int maxHealthpoints, int numberOfPotion, List<string> inventory, string characteristics) : base(name, healthpoints, inventory, characteristics)
         {
             this.maxHealthpoints = maxHealthpoints;
             this.numberOfPotion = numberOfPotion;
@@ -18,9 +17,9 @@ namespace AdventureGame
         {
             Console.WriteLine("I am :" + name + "My characteristics are: " + characteristics);
             Console.WriteLine("I have :" + maxHealthpoints + "life and in my bag are: ");
-            foreach (Item _item in inventory)
+            foreach (string _item in inventory)
             {
-                Console.WriteLine(_item.item.Key);
+                Console.WriteLine(_item);
             }
         }
         public void MakeAMove(Door _door)
@@ -29,7 +28,7 @@ namespace AdventureGame
         }
         public void ShowInventory()
         {
-            foreach (Item _item in inventory)
+            foreach (string _item in inventory)
             {
                 Console.WriteLine(_item);
             }
@@ -38,34 +37,40 @@ namespace AdventureGame
         {
             Console.WriteLine("commands (c), move north(n), move east (n), move south (s), move west (w), look (l), inventory (i), take (t) <item>, drop (d) <item>, use (u) <item> with <object>, attack (a) <character>. ask (ask) <character>, take potion (p)");
         }
-        public void TakeItem(Item item)
+        public void TakeItem(string item)
         {
             inventory.Add(item);
 
         }
-        public override void dropItem(Item item)
+        public override void dropItem(string item)
         {
             inventory.Remove(item);
         }
         public void UseItem()
         {
+            bool _doorIsOpen = false;
             Console.WriteLine("Which item do you want to use?");
             Console.Write("> ");
             string _item = Console.ReadLine();
             Console.WriteLine("On what Object you want to use it?");
             Console.Write("> ");
             string _object = Console.ReadLine();
-            for (int i = 0; i < inventory.Count; i++)
+            for (int i = 0; i < Game._rooms.Count; i++)
             {
-                if (inventory[i].item.Key == _item)
+                if (inventory[i] == _item)
                 {
-                    item = inventory[i];
-                }
-                if (item.item.Value == _object)
-                {
-                    Console.WriteLine("You used " + item.item.Key + "on" + item.item.Value);
+                    for (int j = 0; j < Game._rooms[i].doors.Count; j++)
+                    {
+                        if (inventory[i] == Game._rooms[i].doors[j].objectYouNeedToOpen)
+                        {
+                            Game._rooms[i].doors[j].isOpen = true;
+                            _doorIsOpen = true;
+                        }
+                    }
                 }
             }
+            if (_doorIsOpen)
+                Console.WriteLine("You used " + _item + "on" + _object + "and opened a door");
         }
         public void TakePotion()
         {

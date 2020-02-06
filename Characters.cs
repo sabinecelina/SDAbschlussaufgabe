@@ -6,11 +6,11 @@ namespace AdventureGame
     {
         public string name;
         public int healthpoints;
-        public List<Item> inventory;
+        public List<string> inventory;
         public string characteristics;
         public abstract void DisplayCharacter();
-        public abstract void dropItem(Item item);
-        public Characters(string name, int healthpoints, List<Item> inventory, string characteristics)
+        public abstract void dropItem(string item);
+        public Characters(string name, int healthpoints, List<string> inventory, string characteristics)
         {
             this.name = name;
             this.healthpoints = healthpoints;

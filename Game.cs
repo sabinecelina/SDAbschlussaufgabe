@@ -6,10 +6,10 @@ namespace AdventureGame
 {
     public class Game
     {
-        public List<Room> _rooms;
+        public static List<Room> _rooms;
         private Player _player;
         private bool _gameOver = false;
-        protected Room _currentRoom;
+        public Room _currentRoom;
         private NPC _currentNPC;
         private Item _item;
 
@@ -67,11 +67,11 @@ namespace AdventureGame
                             _player.TakePotion();
                             break;
                         case "t":
-                            _player.TakeItem(_item);
+                            _player.TakeItem(input[1]);
                             _currentRoom.inventory.Remove(_item);
                             break;
                         case "d":
-                            _player.dropItem(_item);
+                            _player.dropItem(input[1]);
                             _currentRoom.inventory.Add(_item);
                             break;
                         case "u":

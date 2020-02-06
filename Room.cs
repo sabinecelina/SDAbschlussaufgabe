@@ -7,7 +7,7 @@ namespace AdventureGame
     {
         public string nameOfRoom;
         public int location;
-        private List<Door> doors;
+        public List<Door> doors;
         public List<NPC> nPCs;
         public List<Item> inventory;
 
