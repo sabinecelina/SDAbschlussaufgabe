@@ -8,6 +8,7 @@ namespace AdventureGame
     {
         public int maxHealthpoints;
         public int numberOfPotion;
+        private Item item;
         public Player(string name, int healthpoints, int maxHealthpoints, int numberOfPotion, List<Item> inventory, string characteristics) : base(name, healthpoints, inventory, characteristics)
         {
             this.maxHealthpoints = maxHealthpoints;
@@ -15,7 +16,12 @@ namespace AdventureGame
         }
         public override void DisplayCharacter()
         {
-
+            Console.WriteLine("I am :" + name + "My characteristics are: " + characteristics);
+            Console.WriteLine("I have :" + maxHealthpoints + "life and in my bag are: ");
+            foreach (Item _item in inventory)
+            {
+                Console.WriteLine(_item.item.Key);
+            }
         }
         public void MakeAMove(Door _door)
         {
@@ -44,6 +50,22 @@ namespace AdventureGame
         public void UseItem()
         {
             Console.WriteLine("Which item do you want to use?");
+            Console.Write("> ");
+            string _item = Console.ReadLine();
+            Console.WriteLine("On what Object you want to use it?");
+            Console.Write("> ");
+            string _object = Console.ReadLine();
+            for (int i = 0; i < inventory.Count; i++)
+            {
+                if (inventory[i].item.Key == _item)
+                {
+                    item = inventory[i];
+                }
+                if (item.item.Value == _object)
+                {
+                    Console.WriteLine("You used " + item.item.Key + "on" + item.item.Value);
+                }
+            }
         }
         public void TakePotion()
         {

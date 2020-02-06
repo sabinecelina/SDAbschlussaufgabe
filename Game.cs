@@ -26,7 +26,7 @@ namespace AdventureGame
             if (!_gameOver)
             {
 
-                for (int i = 0; i =< _rooms.Count; i++)
+                for (int i = 0; i <= _rooms.Count; i++)
                 {
                     if (_rooms[i].location == 1)
                     {
