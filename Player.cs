@@ -10,6 +10,7 @@ namespace AdventureGame
         public int location;
         public int numberOfPotion = 0;
         public string startGameAdventure;
+        public string endGameAdventure;
 
         public Player(string name, int healthpoints, int maxHealthpoints, int location, List<string> inventory, string characteristics) : base(name, healthpoints, inventory, characteristics)
         {
@@ -59,6 +60,10 @@ namespace AdventureGame
                 Console.WriteLine("This door is closed. You need to open it to step in.");
                 Console.WriteLine(_door.informationHowToOpen);
             }
+            else
+            {
+                Console.WriteLine("You opened a door, Gratulation");
+            }
             Random random = new Random();
             int rnd = random.Next(0, Game._rooms.Count - 1);
             Console.WriteLine(rnd);
@@ -86,16 +91,19 @@ namespace AdventureGame
         }
         public void DisplayCommands()
         {
-            Console.WriteLine("commands (c), move north(n), move east (n), move south (s), move west (w), look (l), inventory (i), take (t) <item>, drop (d) <item>, use (u) <item> with <object>, attack (a) <character>. ask (ask) <character>, take potion (p), save (save) game, quit (q) game");
+            Console.WriteLine("commands (c), move north(n), move east (n), move south (s), move west (w), look (l), inventory (i), take (t) <item>, drop (d) <item>, use (u) <item> with <object>, attack (a <nameOfCharacter>) <character>. ask (ask) <character>, take potion (p), save (save) game, quit (q) game");
         }
         public void TakeItem(string item)
         {
             inventory.Add(item);
+            Console.WriteLine("You have now: ");
+            ShowInventory();
 
         }
         public override void dropItem(string item)
         {
             inventory.Remove(item);
+            Console.WriteLine("You removed this " + item);
         }
         public void UseItem()
         {
@@ -139,6 +147,7 @@ namespace AdventureGame
                     if (healthpoints < maxHealthpoints)
                         healthpoints = maxHealthpoints;
                     numberOfPotion--;
+                    Console.WriteLine("You drank your potion. Your healthpoints now are: " + healthpoints);
                 }
                 else
                     Console.WriteLine("You have enough live. You don't need a potion");
@@ -173,6 +182,7 @@ namespace AdventureGame
                 double damage = random.NextDouble() * (maxDamage - minDamage) + minDamage;
                 _nPC.healthpoints -= (int)(healthpoints * damage);
             }
+            Console.WriteLine("You attacked " + _nPC.name + "his healthpoints now are" + _nPC.healthpoints);
             return _nPC;
         }
 

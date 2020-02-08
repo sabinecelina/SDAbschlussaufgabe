@@ -59,6 +59,14 @@ namespace AdventureGame
             Console.WriteLine("You got attackted");
             return _player;
         }
+        public Player AttackPlayerAfterHeJoinedRoom(Player _player)
+        {
+            if (Game._makeAMove)
+            {
+                AttackPlayer(_player);
+            }
+            return _player;
+        }
         public void GiveInformation()
         {
             if (isGood)

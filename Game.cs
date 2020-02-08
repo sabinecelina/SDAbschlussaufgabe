@@ -19,7 +19,7 @@ namespace AdventureGame
         private NPC _currentNPC;
         private Door _door;
         private int _newLocation;
-        private bool _makeAMove;
+        public static bool _makeAMove;
         private string _item;
         public static Game _game = new Game();
 
@@ -49,7 +49,7 @@ namespace AdventureGame
         }
         public void PlayGame()
         {
-            if (!IsGameOver())
+            if (!IsGameOver() && IsGameWinning())
             {
 
                 Console.WriteLine("What do you want to do?");
@@ -132,6 +132,10 @@ namespace AdventureGame
                         {
                             _currentRoom.ShowRoomDescription();
                             _makeAMove = false;
+                            foreach (NPC _nPC in _currentRoom.nPCs)
+                            {
+                                _nPC.AttackPlayerAfterHeJoinedRoom(_player);
+                            }
                         }
                         break;
                     case "q":
@@ -150,6 +154,7 @@ namespace AdventureGame
         }
         public void StartGame()
         {
+            Console.WriteLine(_player.startGameAdventure);
             _rooms[0].ShowRoomDescription();
             _currentRoom = _rooms[0];
         }
@@ -191,10 +196,27 @@ namespace AdventureGame
                     Console.WriteLine(Game._rooms[i].nPCs[j].name);
                     if (_player.healthpoints == 0)
                     {
-                        IsGameOver = true;
+                        _gameOver = true;
                     }
                 }
             }
+            return _gameOver;
+        }
+        public bool IsGameWinning()
+        {
+            bool isWinning = false;
+            for (int i = 0; i <= Game._rooms.Count - 1; i++)
+            {
+                for (int j = 0; j <= Game._rooms[i].nPCs.Count - 1; j++)
+                {
+                    if (Game._rooms[i].nPCs[j].strength == 3 && !Game._rooms[i].nPCs[j].isAlive)
+                    {
+                        Console.WriteLine(_player.endGameAdventure);
+                        isWinning = true;
+                    }
+                }
+            }
+            return isWinning;
         }
     }
 }
