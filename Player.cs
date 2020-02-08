@@ -7,11 +7,13 @@ namespace AdventureGame
     public class Player : Characters
     {
         public int maxHealthpoints;
+        public int location;
         public int numberOfPotion;
-        public Player(string name, int healthpoints, int maxHealthpoints, int numberOfPotion, List<string> inventory, string characteristics) : base(name, healthpoints, inventory, characteristics)
+
+        public Player(string name, int healthpoints, int maxHealthpoints, int location, List<string> inventory, string characteristics) : base(name, healthpoints, inventory, characteristics)
         {
             this.maxHealthpoints = maxHealthpoints;
-            this.numberOfPotion = numberOfPotion;
+            this.location = location;
         }
         public override void DisplayCharacter()
         {
@@ -22,9 +24,41 @@ namespace AdventureGame
                 Console.WriteLine(_item);
             }
         }
-        public void MakeAMove(Door _door)
+        public bool MakeAMove(Door _door)
         {
-            //TODO 
+            bool _isOpen = false;
+            for (int i = 0; i < Game._rooms.Count; i++)
+            {
+                if (_door.isOpen)
+                {
+                    this.location = _door.leadsTo.location;
+                    _isOpen = true;
+                }
+                else if (!_door.isOpen)
+                {
+                    foreach (char _information in _door.informationHowToOpen)
+                    {
+                        if (_information == '?')
+                        {
+                            Console.WriteLine(_door.informationHowToOpen);
+                            Console.WriteLine("Please answer the question to open the door.");
+                            string input = Console.ReadLine();
+                            if (input == _door.objectYouNeedToOpen)
+                            {
+                                _door.isOpen = true;
+                                _isOpen = true;
+                            }
+                            this.location = _door.leadsTo.location;
+                        }
+                    }
+                }
+            }
+            if (!_isOpen)
+            {
+                Console.WriteLine("This door is closed. You need to open it to step in.");
+                Console.WriteLine(_door.informationHowToOpen);
+            }
+            return _isOpen;
         }
         public void ShowInventory()
         {

@@ -7,11 +7,12 @@ namespace AdventureGame
     public class Game
     {
         public static List<Room> _rooms;
-        private Player _player;
+        public static Player _player;
         private bool _gameOver = false;
         public Room _currentRoom;
         private NPC _currentNPC;
         private Item _item;
+        private Door _door;
 
         public static void Main(string[] args)
         {
@@ -39,17 +40,17 @@ namespace AdventureGame
                     string userInput = Console.ReadLine();
                     string[] input = userInput.Split(" ");
                     List<NPC> _npc = _currentRoom.nPCs;
-                    for (int n = 0; n < _npc.Count; n++)
-                    {
-                        if (_npc[n].name == input[1])
-                            _currentNPC = _npc[n];
-                    }
                     for (int m = 0; m < _currentRoom.inventory.Count; i++)
                     {
                         if (_currentRoom.inventory[m].item.Key == input[1])
                         {
                             _item = _currentRoom.inventory[m];
                         }
+                    }
+                    for (int o = 0; o < _currentRoom.doors.Count; o++)
+                    {
+                        if (input[0] == _currentRoom.doors[o].doorDirection)
+                            _door = _currentRoom.doors[o];
                     }
 
                     switch (input[0])
@@ -83,7 +84,12 @@ namespace AdventureGame
                         case "ask":
                             _currentNPC.GiveInformation();
                             break;
-
+                        case "n":
+                        case "s":
+                        case "e":
+                        case "w":
+                            _player.MakeAMove(_door);
+                            break;
                     }
                 }
             }
