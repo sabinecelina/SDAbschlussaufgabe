@@ -56,11 +56,8 @@ namespace AdventureGame
                 double damage = random.NextDouble() * (maxDamage - minDamage) + minDamage;
                 _player.healthpoints -= (int)(healthpoints * damage);
             }
+            Console.WriteLine("You got attackted");
             return _player;
-        }
-        public void changeRoom()
-        {
-            //TODO
         }
         public void GiveInformation()
         {
@@ -68,7 +65,11 @@ namespace AdventureGame
             {
                 DisplayCharacter();
                 Console.WriteLine(information);
-
+            }
+            else if (!isGood)
+            {
+                Console.WriteLine("hahaha, you wish");
+                AttackPlayer(Game._player);
             }
         }
     }

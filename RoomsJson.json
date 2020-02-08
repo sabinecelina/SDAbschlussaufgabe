@@ -1,0 +1,63 @@
+[
+    {
+        "nameOfRoom": "numberOne",
+        "location": 1,
+        "doors": [
+            {
+                "doorDirection": "n",
+                "isOpen": true,
+                "leadsTo": "numberTwo",
+                "informationHowToOpen": "Is Daniel cool? ",
+                "objectYouNeedToOpen": "no"
+            }
+        ],
+        "nPCs": [
+            {
+                "name": "warrior",
+                "healthpoints": 70,
+                "inventory": [
+                    "key"
+                ],
+                "characteristics": "strong, but many HP",
+                "strength": 2,
+                "isGood": false,
+                "information": "none"
+            }
+        ],
+        "inventory": [
+            "door",
+            "fire"
+        ]
+    },
+    {
+        "nameOfRoom": "numberTwo",
+        "location": 2,
+        "doors": [
+            {
+                "doorDirection": "n",
+                "isOpen": true,
+                "leadsTo": "numberOne",
+                "informationHowToOpen": "You need light. ",
+                "objectYouNeedToOpen": "torch"
+            }
+        ],
+        "nPCs": [
+            {
+                "name": "the lucky one",
+                "healthpoints": 100,
+                "inventory": [
+                    "key"
+                ],
+                "characteristics": "hopefully, strange",
+                "strength": 1,
+                "isGood": true,
+                "information": "You need always a little bit of your voice to speek out loud"
+            }
+        ],
+        "inventory": [
+            "door",
+            "fire",
+            "torch"
+        ]
+    }
+]

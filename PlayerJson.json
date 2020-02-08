@@ -1,0 +1,8 @@
+{
+    "name": "alexander, the king",
+    "healthpoints": 100,
+    "inventory": [
+        "rope",
+        "potion"
+    ]
+}

@@ -31,7 +31,7 @@ namespace AdventureGame
             {
                 if (_door.isOpen)
                 {
-                    this.location = _door.leadsTo.location;
+                    this.location = _door.LeadsTo().location;
                     _isOpen = true;
                 }
                 else if (!_door.isOpen)
@@ -48,7 +48,7 @@ namespace AdventureGame
                                 _door.isOpen = true;
                                 _isOpen = true;
                             }
-                            this.location = _door.leadsTo.location;
+                            this.location = _door.LeadsTo().location;
                         }
                     }
                 }
@@ -58,6 +58,17 @@ namespace AdventureGame
                 Console.WriteLine("This door is closed. You need to open it to step in.");
                 Console.WriteLine(_door.informationHowToOpen);
             }
+            Random random = new Random();
+            int rnd = random.Next(0, Game._rooms.Count);
+            for (int i = 0; i <= Game._rooms.Count; i++)
+                foreach (NPC _npc in Game._rooms[i].nPCs)
+                {
+                    if (_npc.strength == 2)
+                    {
+                        Game._rooms[i].nPCs.Remove(_npc);
+                        Game._rooms[rnd].nPCs.Add(_npc);
+                    }
+                }
             return _isOpen;
         }
         public void ShowInventory()
@@ -69,7 +80,7 @@ namespace AdventureGame
         }
         public void DisplayCommands()
         {
-            Console.WriteLine("commands (c), move north(n), move east (n), move south (s), move west (w), look (l), inventory (i), take (t) <item>, drop (d) <item>, use (u) <item> with <object>, attack (a) <character>. ask (ask) <character>, take potion (p)");
+            Console.WriteLine("commands (c), move north(n), move east (n), move south (s), move west (w), look (l), inventory (i), take (t) <item>, drop (d) <item>, use (u) <item> with <object>, attack (a) <character>. ask (ask) <character>, take potion (p), save (save) game, quit (q) game");
         }
         public void TakeItem(string item)
         {

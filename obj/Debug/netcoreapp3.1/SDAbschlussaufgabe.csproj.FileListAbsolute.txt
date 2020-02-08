@@ -9,3 +9,5 @@ C:\Users\Sabine Schleise\Documents\MIB4\Softwaredesign\Abschlussaufgabe\GitHub\S
 C:\Users\Sabine Schleise\Documents\MIB4\Softwaredesign\Abschlussaufgabe\GitHub\SDAbschlussaufgabe\obj\Debug\netcoreapp3.1\SDAbschlussaufgabe.AssemblyInfo.cs
 C:\Users\Sabine Schleise\Documents\MIB4\Softwaredesign\Abschlussaufgabe\GitHub\SDAbschlussaufgabe\obj\Debug\netcoreapp3.1\SDAbschlussaufgabe.dll
 C:\Users\Sabine Schleise\Documents\MIB4\Softwaredesign\Abschlussaufgabe\GitHub\SDAbschlussaufgabe\obj\Debug\netcoreapp3.1\SDAbschlussaufgabe.pdb
+c:\Users\Sabine Schleise\Documents\MIB4\Softwaredesign\Abschlussaufgabe\GitHub\SDAbschlussaufgabe\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\Sabine Schleise\Documents\MIB4\Softwaredesign\Abschlussaufgabe\GitHub\SDAbschlussaufgabe\obj\Debug\netcoreapp3.1\SDAbschlussaufgabe.csproj.CopyComplete

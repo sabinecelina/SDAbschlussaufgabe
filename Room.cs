@@ -9,9 +9,9 @@ namespace AdventureGame
         public int location;
         public List<Door> doors;
         public List<NPC> nPCs;
-        public List<Item> inventory;
+        public List<string> inventory;
 
-        public Room(string nameOfRoom, int location, List<Door> doors, List<NPC> nPCs, List<Item> inventory)
+        public Room(string nameOfRoom, int location, List<Door> doors, List<NPC> nPCs, List<string> inventory)
         {
             this.nameOfRoom = nameOfRoom;
             this.location = location;
@@ -19,12 +19,16 @@ namespace AdventureGame
             this.nPCs = nPCs;
             this.inventory = inventory;
         }
+        public Room()
+        {
+
+        }
         public void ShowRoomDescription()
         {
             Console.WriteLine("You are in a " + nameOfRoom + ". You can see: ");
-            foreach (Item _item in inventory)
+            foreach (string _item in inventory)
             {
-                Console.WriteLine(_item.item.Key);
+                Console.WriteLine(_item);
             }
             if (nPCs.Count != 0)
             {
