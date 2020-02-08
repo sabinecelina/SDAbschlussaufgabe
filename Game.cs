@@ -3,6 +3,11 @@ using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.IO;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Threading;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace AdventureGame
 {
@@ -132,7 +137,7 @@ namespace AdventureGame
                     QuitGame();
                     break;
                 case "save":
-                    SaveGame();
+                    SavedGame();
                     break;
             }
             PlayGame();
@@ -142,13 +147,23 @@ namespace AdventureGame
             _rooms[0].ShowRoomDescription();
             _currentRoom = _rooms[0];
         }
-        public void SaveGame()
+        public string SaveGame<Room>(string jsonPath, Room _room)
         {
-            //TODO
+            string jsonString;
+            jsonString = System.Text.Json.JsonSerializer.Serialize(_rooms);
+            File.WriteAllText("savegames", jsonString);
+            return JsonConvert.SerializeObject(_room);
+        }
+        public void SavedGame()
+        {
+            string pathText = "SaveGamee.json";
+            string updatedJson = SaveGame(pathText, _rooms);
+            File.WriteAllText(pathText, updatedJson);
+            Console.WriteLine(updatedJson.ToString());
         }
         public void QuitGame()
         {
-            Debugger.Break();
+            Environment.Exit(0);
         }
     }
 }
