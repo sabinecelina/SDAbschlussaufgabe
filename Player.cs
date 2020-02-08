@@ -8,7 +8,7 @@ namespace AdventureGame
     {
         public int maxHealthpoints;
         public int location;
-        public int numberOfPotion;
+        public int numberOfPotion = 0;
 
         public Player(string name, int healthpoints, int maxHealthpoints, int location, List<string> inventory, string characteristics) : base(name, healthpoints, inventory, characteristics)
         {
@@ -59,16 +59,21 @@ namespace AdventureGame
                 Console.WriteLine(_door.informationHowToOpen);
             }
             Random random = new Random();
-            int rnd = random.Next(0, Game._rooms.Count);
-            for (int i = 0; i <= Game._rooms.Count; i++)
-                foreach (NPC _npc in Game._rooms[i].nPCs)
+            int rnd = random.Next(0, Game._rooms.Count - 1);
+            Console.WriteLine(rnd);
+            for (int i = 0; i <= Game._rooms.Count - 1; i++)
+            {
+                for (int j = 0; j <= Game._rooms[i].nPCs.Count - 1; j++)
                 {
-                    if (_npc.strength == 2)
+                    Console.WriteLine(Game._rooms[i].nPCs[j].name);
+                    if (Game._rooms[i].nPCs[j].strength == 2)
                     {
-                        Game._rooms[i].nPCs.Remove(_npc);
-                        Game._rooms[rnd].nPCs.Add(_npc);
+                        Game._rooms[rnd].nPCs.Add(Game._rooms[i].nPCs[j]);
+                        Game._rooms[i].nPCs.Remove(Game._rooms[i].nPCs[j]);
                     }
+
                 }
+            }
             return _isOpen;
         }
         public void ShowInventory()
@@ -119,8 +124,9 @@ namespace AdventureGame
         }
         public void TakePotion()
         {
-            for (int i = 0; i <= inventory.Count; i++)
+            for (int i = 0; i <= inventory.Count - 1; i++)
             {
+                ShowInventory();
                 if (inventory[i] == "potion")
                     numberOfPotion++;
             }

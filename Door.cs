@@ -17,7 +17,7 @@ namespace AdventureGame
         public Room LeadsTo()
         {
             Room _room = new Room();
-            for (int i = 0; i <= Game._rooms.Count; i++)
+            for (int i = 0; i < Game._rooms.Count; i++)
             {
                 if (Game._rooms[i].nameOfRoom == leadsTo)
                 {

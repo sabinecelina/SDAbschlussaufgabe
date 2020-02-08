@@ -4,5 +4,7 @@
     "inventory": [
         "rope",
         "potion"
-    ]
+    ],
+    "maxHealthpoints": 100,
+    "location": 0
 }

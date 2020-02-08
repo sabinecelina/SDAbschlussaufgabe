@@ -52,13 +52,6 @@ namespace AdventureGame
             string userInput = Console.ReadLine();
             string[] input = userInput.Split(":");
             List<NPC> _npc = _currentRoom.nPCs;
-            for (int m = 0; m < _currentRoom.inventory.Count; m++)
-            {
-                if (_currentRoom.inventory[m] == input[1])
-                {
-                    _item = _currentRoom.inventory[m];
-                }
-            }
 
             switch (input[0])
             {
@@ -75,8 +68,15 @@ namespace AdventureGame
                     _player.TakePotion();
                     break;
                 case "t":
-                    _player.TakeItem(input[1]);
-                    _currentRoom.inventory.Remove(_item);
+                    for (int m = 0; m < _currentRoom.inventory.Count; m++)
+                    {
+                        if (_currentRoom.inventory[m] == input[1])
+                        {
+                            _item = _currentRoom.inventory[m];
+                            _player.TakeItem(input[1]);
+                            _currentRoom.inventory.Remove(_item);
+                        }
+                    }
                     break;
                 case "d":
                     _player.dropItem(input[1]);
@@ -86,7 +86,14 @@ namespace AdventureGame
                     _player.UseItem();
                     break;
                 case "a":
-                    _currentNPC = _player.AttackNPC(_currentNPC);
+                    for (int m = 0; m < _currentRoom.nPCs.Count; m++)
+                    {
+                        if (_currentRoom.nPCs[m].name == input[1])
+                        {
+                            _currentNPC = _currentRoom.nPCs[m];
+                            _currentNPC = _player.AttackNPC(_currentNPC);
+                        }
+                    }
                     break;
                 case "ask":
                     for (int m = 0; m < _currentRoom.nPCs.Count; m++)

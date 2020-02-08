@@ -5,7 +5,7 @@
         "doors": [
             {
                 "doorDirection": "n",
-                "isOpen": true,
+                "isOpen": false,
                 "leadsTo": "numberTwo",
                 "informationHowToOpen": "Is Daniel cool? ",
                 "objectYouNeedToOpen": "no"
@@ -43,7 +43,7 @@
         ],
         "nPCs": [
             {
-                "name": "the lucky one",
+                "name": "lucky",
                 "healthpoints": 100,
                 "inventory": [
                     "key"
