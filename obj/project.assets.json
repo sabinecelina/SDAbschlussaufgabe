@@ -10,24 +10,6 @@
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
-      },
-      "System.Reactive.Windows.Forms/4.3.2": {
-        "type": "package",
-        "compile": {
-          "lib/net46/System.Reactive.Windows.Forms.dll": {}
-        },
-        "runtime": {
-          "lib/net46/System.Reactive.Windows.Forms.dll": {}
-        }
-      },
-      "System.Windows.Forms.Ribbon35/3.5.8": {
-        "type": "package",
-        "compile": {
-          "lib/net35/System.Windows.Forms.Ribbon35.dll": {}
-        },
-        "runtime": {
-          "lib/net35/System.Windows.Forms.Ribbon35.dll": {}
-        }
       }
     }
   },
@@ -62,39 +44,11 @@
         "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
-    },
-    "System.Reactive.Windows.Forms/4.3.2": {
-      "sha512": "mtR1MUNNsB5nwm88vpqCSoIJAQCNbpHQxGDqc+JwYyGsz8VOkeMWKLFC+PToVcl+hU2VPJ3gOz52S957yzU+ig==",
-      "type": "package",
-      "path": "system.reactive.windows.forms/4.3.2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net46/System.Reactive.Windows.Forms.dll",
-        "lib/net46/System.Reactive.Windows.Forms.xml",
-        "system.reactive.windows.forms.4.3.2.nupkg.sha512",
-        "system.reactive.windows.forms.nuspec"
-      ]
-    },
-    "System.Windows.Forms.Ribbon35/3.5.8": {
-      "sha512": "eCT9IcJyU/NDrDA7Obp40Ata7hvPTVrtKjcofJe4LC/qjx7MNpOR0vNDfc5IDEzZi5bP5wGfJpVOWnnFeL2AUQ==",
-      "type": "package",
-      "path": "system.windows.forms.ribbon35/3.5.8",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "content/Updates.txt",
-        "lib/net35/System.Windows.Forms.Ribbon35.dll",
-        "system.windows.forms.ribbon35.3.5.8.nupkg.sha512",
-        "system.windows.forms.ribbon35.nuspec"
-      ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "Newtonsoft.Json >= 12.0.3",
-      "System.Reactive.Windows.Forms >= 4.3.2",
-      "System.Windows.Forms.Ribbon35 >= 3.5.8"
+      "Newtonsoft.Json >= 12.0.3"
     ]
   },
   "packageFolders": {
@@ -139,14 +93,6 @@
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[12.0.3, )"
-          },
-          "System.Reactive.Windows.Forms": {
-            "target": "Package",
-            "version": "[4.3.2, )"
-          },
-          "System.Windows.Forms.Ribbon35": {
-            "target": "Package",
-            "version": "[3.5.8, )"
           }
         },
         "imports": [
@@ -167,27 +113,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Das Paket \"System.Reactive.Windows.Forms 4.3.2\" wurde nicht mit dem Projektzielframework \".NETCoreApp,Version=v3.1\", sondern mit \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\" wiederhergestellt. Dieses Paket ist mit Ihrem Projekt möglicherweise nicht vollständig kompatibel.",
-      "libraryId": "System.Reactive.Windows.Forms",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Das Paket \"System.Windows.Forms.Ribbon35 3.5.8\" wurde nicht mit dem Projektzielframework \".NETCoreApp,Version=v3.1\", sondern mit \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\" wiederhergestellt. Dieses Paket ist mit Ihrem Projekt möglicherweise nicht vollständig kompatibel.",
-      "libraryId": "System.Windows.Forms.Ribbon35",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v3.1"
-      ]
-    }
-  ]
+  }
 }

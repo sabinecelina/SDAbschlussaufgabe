@@ -6,5 +6,6 @@
         "potion"
     ],
     "maxHealthpoints": 100,
-    "location": 0
+    "location": 0,
+    "startGameAdventure": "Once upon a time, there was a mysterious way to be alive"
 }

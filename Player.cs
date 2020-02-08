@@ -9,6 +9,7 @@ namespace AdventureGame
         public int maxHealthpoints;
         public int location;
         public int numberOfPotion = 0;
+        public string startGameAdventure;
 
         public Player(string name, int healthpoints, int maxHealthpoints, int location, List<string> inventory, string characteristics) : base(name, healthpoints, inventory, characteristics)
         {

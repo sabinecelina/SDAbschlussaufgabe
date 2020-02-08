@@ -8,9 +8,7 @@
     ".NETCoreApp,Version=v3.1": {
       "SDAbschlussaufgabe/1.0.0": {
         "dependencies": {
-          "Newtonsoft.Json": "12.0.3",
-          "System.Reactive.Windows.Forms": "4.3.2",
-          "System.Windows.Forms.Ribbon35": "3.5.8"
+          "Newtonsoft.Json": "12.0.3"
         },
         "runtime": {
           "SDAbschlussaufgabe.dll": {}
@@ -21,22 +19,6 @@
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
             "assemblyVersion": "12.0.0.0",
             "fileVersion": "12.0.3.23909"
-          }
-        }
-      },
-      "System.Reactive.Windows.Forms/4.3.2": {
-        "runtime": {
-          "lib/net46/System.Reactive.Windows.Forms.dll": {
-            "assemblyVersion": "3.0.3000.0",
-            "fileVersion": "3.0.3000.0"
-          }
-        }
-      },
-      "System.Windows.Forms.Ribbon35/3.5.8": {
-        "runtime": {
-          "lib/net35/System.Windows.Forms.Ribbon35.dll": {
-            "assemblyVersion": "3.5.8.0",
-            "fileVersion": "3.5.8.0"
           }
         }
       }
@@ -54,20 +36,6 @@
       "sha512": "sha512-6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
       "path": "newtonsoft.json/12.0.3",
       "hashPath": "newtonsoft.json.12.0.3.nupkg.sha512"
-    },
-    "System.Reactive.Windows.Forms/4.3.2": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-mtR1MUNNsB5nwm88vpqCSoIJAQCNbpHQxGDqc+JwYyGsz8VOkeMWKLFC+PToVcl+hU2VPJ3gOz52S957yzU+ig==",
-      "path": "system.reactive.windows.forms/4.3.2",
-      "hashPath": "system.reactive.windows.forms.4.3.2.nupkg.sha512"
-    },
-    "System.Windows.Forms.Ribbon35/3.5.8": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-eCT9IcJyU/NDrDA7Obp40Ata7hvPTVrtKjcofJe4LC/qjx7MNpOR0vNDfc5IDEzZi5bP5wGfJpVOWnnFeL2AUQ==",
-      "path": "system.windows.forms.ribbon35/3.5.8",
-      "hashPath": "system.windows.forms.ribbon35.3.5.8.nupkg.sha512"
     }
   }
 }
