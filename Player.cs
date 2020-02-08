@@ -108,6 +108,11 @@ namespace AdventureGame
         }
         public void TakePotion()
         {
+            for (int i = 0; i <= inventory.Count; i++)
+            {
+                if (inventory[i] == "potion")
+                    numberOfPotion++;
+            }
             if (numberOfPotion != 0)
             {
                 if (healthpoints != maxHealthpoints)

@@ -88,7 +88,18 @@ namespace AdventureGame
                         case "s":
                         case "e":
                         case "w":
-                            _player.MakeAMove(_door);
+                            for (int g = 0; g < _currentRoom.doors.Count; g++)
+                            {
+                                if (_currentRoom.doors[g].doorDirection == input[0])
+                                {
+                                    _door = _currentRoom.doors[g];
+                                    _player.MakeAMove(_door);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("There is no door. Please try it with an another door.");
+                                }
+                            }
                             break;
                     }
                 }
