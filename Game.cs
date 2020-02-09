@@ -15,8 +15,8 @@ namespace AdventureGame
         public static List<Room> _rooms = new List<Room>();
         public static Player _player;
         private bool _gameOver = false;
-        public Room _currentRoom;
-        private NPC _currentNPC;
+        public static Room _currentRoom;
+        public static NPC _currentNPC;
         private Door _door;
         private int _newLocation;
         public static bool _makeAMove;
@@ -49,7 +49,7 @@ namespace AdventureGame
         }
         public void PlayGame()
         {
-            if (!IsGameOver() && IsGameWinning())
+            if (!IsGameOver() && !IsGameWinning())
             {
 
                 Console.WriteLine("What do you want to do?");
@@ -89,7 +89,7 @@ namespace AdventureGame
                         _currentRoom.inventory.Add(_item);
                         break;
                     case "u":
-                        _player.UseItem();
+                        _player.UseItem(_player);
                         break;
                     case "a":
                         for (int m = 0; m < _currentRoom.nPCs.Count; m++)
@@ -145,12 +145,19 @@ namespace AdventureGame
                         SavedGame();
                         break;
                 }
-                PlayGame();
             }
-            else
+            else if (IsGameOver())
             {
                 Console.WriteLine("You died, this game is over");
+                Thread.Sleep(5000);
+                Environment.Exit(0);
             }
+            else if (IsGameWinning())
+            {
+                Console.WriteLine(_player.endGameAdventure);
+            }
+            PlayGame();
+
         }
         public void StartGame()
         {
@@ -189,34 +196,24 @@ namespace AdventureGame
         }
         public bool IsGameOver()
         {
-            for (int i = 0; i <= Game._rooms.Count - 1; i++)
-            {
-                for (int j = 0; j <= Game._rooms[i].nPCs.Count - 1; j++)
-                {
-                    Console.WriteLine(Game._rooms[i].nPCs[j].name);
-                    if (_player.healthpoints == 0)
-                    {
-                        _gameOver = true;
-                    }
-                }
-            }
+            if (_player.healthpoints <= 0)
+                _gameOver = true;
             return _gameOver;
         }
         public bool IsGameWinning()
         {
-            bool isWinning = false;
+            bool _gameWinning = false;
             for (int i = 0; i <= Game._rooms.Count - 1; i++)
             {
                 for (int j = 0; j <= Game._rooms[i].nPCs.Count - 1; j++)
                 {
                     if (Game._rooms[i].nPCs[j].strength == 3 && !Game._rooms[i].nPCs[j].isAlive)
                     {
-                        Console.WriteLine(_player.endGameAdventure);
-                        isWinning = true;
+                        _gameWinning = true;
                     }
                 }
             }
-            return isWinning;
+            return _gameWinning;
         }
     }
 }

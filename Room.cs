@@ -7,14 +7,16 @@ namespace AdventureGame
     {
         public string nameOfRoom;
         public int location;
+        public string description;
         public List<Door> doors;
         public List<NPC> nPCs;
         public List<string> inventory;
 
-        public Room(string nameOfRoom, int location, List<Door> doors, List<NPC> nPCs, List<string> inventory)
+        public Room(string nameOfRoom, int location, string description, List<Door> doors, List<NPC> nPCs, List<string> inventory)
         {
             this.nameOfRoom = nameOfRoom;
             this.location = location;
+            this.description = description;
             this.doors = doors;
             this.nPCs = nPCs;
             this.inventory = inventory;
@@ -25,7 +27,7 @@ namespace AdventureGame
         }
         public void ShowRoomDescription()
         {
-            Console.WriteLine("You are in a " + nameOfRoom + ". You can see: ");
+            Console.WriteLine("You are in a " + nameOfRoom + ". " + description + " You can see: ");
             foreach (string _item in inventory)
             {
                 Console.WriteLine(_item);

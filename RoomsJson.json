@@ -1,14 +1,15 @@
 [
     {
-        "nameOfRoom": "numberOne",
-        "location": 1,
+        "nameOfRoom": "museum underground - smuggling chamber",
+        "location": 0,
+        "description": "Old brickwork - The museum was built on the remains of an 18th century church. It has the original foundation.",
         "doors": [
             {
-                "doorDirection": "n",
+                "doorDirection": "e",
                 "isOpen": false,
-                "leadsTo": "numberTwo",
-                "informationHowToOpen": "Is Daniel cool? ",
-                "objectYouNeedToOpen": "no"
+                "leadsTo": "labyrinth",
+                "informationHowToOpen": "You need a little bit light to unlock the door",
+                "objectYouNeedToOpen": "socket"
             }
         ],
         "nPCs": [
@@ -16,7 +17,7 @@
                 "name": "warrior",
                 "healthpoints": 70,
                 "inventory": [
-                    "key"
+                    "potion"
                 ],
                 "characteristics": "strong, but many HP",
                 "strength": 2,
@@ -25,39 +26,176 @@
             }
         ],
         "inventory": [
-            "door",
-            "fire"
+            "socket",
+            "torch",
+            "small chest"
         ]
     },
     {
-        "nameOfRoom": "numberTwo",
-        "location": 2,
+        "nameOfRoom": "labyrinth",
+        "location": 1,
+        "description": "You never now what happens after you opened a door.",
         "doors": [
             {
-                "doorDirection": "n",
+                "doorDirection": "w",
                 "isOpen": true,
+                "leadsTo": "museum underground - smuggling chamber",
+                "informationHowToOpen": "This door is open. ",
+                "objectYouNeedToOpen": "none"
+            },
+            {
+                "doorDirection": "n",
+                "isOpen": false,
+                "leadsTo": "prison",
+                "informationHowToOpen": "Defeat: warrior",
+                "objectYouNeedToOpen": "warrior"
+            },
+            {
+                "doorDirection": "e",
+                "isOpen": false,
+                "leadsTo": "monster room",
+                "informationHowToOpen": "It's an instrument, you can't touch it, you can't see it, you can hear it! What could that be?",
+                "objectYouNeedToOpen": "voice"
+            },
+            {
+                "doorDirection": "s",
+                "isOpen": false,
                 "leadsTo": "numberOne",
-                "informationHowToOpen": "You need light. ",
-                "objectYouNeedToOpen": "torch"
+                "informationHowToOpen": "You need to unlock the door in the monster room",
+                "objectYouNeedToOpen": "monster room"
             }
         ],
         "nPCs": [
             {
-                "name": "lucky",
+                "name": "luckydeath",
                 "healthpoints": 100,
-                "inventory": [
-                    "key"
-                ],
-                "characteristics": "hopefully, strange",
+                "inventory": [],
+                "characteristics": "funny, strange, introvert",
                 "strength": 1,
+                "isGood": false,
+                "information": "none"
+            },
+            {
+                "name": "luckyone",
+                "healthpoints": 150,
+                "inventory": [],
+                "characteristics": "Thief, honesty",
+                "strength": 2,
                 "isGood": true,
                 "information": "You need always a little bit of your voice to speek out loud"
             }
         ],
         "inventory": [
-            "door",
-            "fire",
-            "torch"
+            "old brickets",
+            "stones",
+            "gift"
         ]
+    },
+    {
+        "nameOfRoom": "prison",
+        "location": 2,
+        "description": "A dungeon in a church is unusual. do not you think so?",
+        "doors": [
+            {
+                "doorDirection": "s",
+                "isOpen": true,
+                "leadsTo": "labyrinth",
+                "informationHowToOpen": "This door is already unlocked",
+                "objectYouNeedToOpen": "nothing"
+            }
+        ],
+        "nPCs": [
+            {
+                "name": "enemy",
+                "healthpoints": 150,
+                "inventory": [],
+                "characteristics": "keycarrier, unexpected",
+                "strength": 2,
+                "isGood": false,
+                "information": "none"
+            }
+        ],
+        "inventory": [
+            "key"
+        ]
+    },
+    {
+        "nameOfRoom": "monster room",
+        "location": 3,
+        "description": "When you walked in you triggered a foot trap and woke up two sleeping monsters.",
+        "doors": [
+            {
+                "doorDirection": "w",
+                "isOpen": false,
+                "leadsTo": "labyrinth",
+                "informationHowToOpen": "One man says to another: I will immediately ask you a question that you can easily answer with yes or no. It won't be a difficult question either, because you will know the correct answer. Still, you won't be able to tell me the correct answer. Anyone else might be able to tell me the correct answer, but you couldn't. However, you are the only person in the world who knows the right answer. What question will he ask him?",
+                "objectYouNeedToOpen": "will zou answer this question with no?"
+            },
+            {
+                "doorDirection": "s",
+                "isOpen": false,
+                "leadsTo": "heart of labyrinth",
+                "informationHowToOpen": "You need a key",
+                "objectYouNeedToOpen": "treasury"
+            }
+        ],
+        "nPCs": [
+            {
+                "name": "minotaurus",
+                "healthpoints": 100,
+                "inventory": [
+                    "potion"
+                ],
+                "characteristics": "evil, just evil",
+                "strength": 2,
+                "isGood": false,
+                "information": "none"
+            },
+            {
+                "name": "chaosgod",
+                "healthpoints": 150,
+                "inventory": [
+                    "treasury"
+                ],
+                "characteristics": "loves chaos, hates people",
+                "strength": 2,
+                "isGood": false,
+                "information": "none"
+            }
+        ],
+        "inventory": []
+    },
+    {
+        "nameOfRoom": "heart of labyrinth",
+        "location": 4,
+        "description": "When you walked in you triggered a foot trap and woke up two sleeping monsters.",
+        "doors": [
+            {
+                "doorDirection": "w",
+                "isOpen": true,
+                "leadsTo": "labyrinth",
+                "informationHowToOpen": "nothing",
+                "objectYouNeedToOpen": "none"
+            },
+            {
+                "doorDirection": "n",
+                "isOpen": true,
+                "leadsTo": "monster room",
+                "informationHowToOpen": "nothing",
+                "objectYouNeedToOpen": "none"
+            }
+        ],
+        "nPCs": [
+            {
+                "name": "icedemon",
+                "healthpoints": 100,
+                "inventory": [],
+                "characteristics": "loves chaos, hates people",
+                "strength": 3,
+                "isGood": false,
+                "information": "none"
+            }
+        ],
+        "inventory": []
     }
 ]
