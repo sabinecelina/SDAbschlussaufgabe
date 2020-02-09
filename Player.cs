@@ -19,7 +19,7 @@ namespace AdventureGame
         }
         public override void DisplayCharacter()
         {
-            Console.WriteLine("I am " + name + " My characteristics are: " + characteristics);
+            Console.WriteLine("I am " + name + ", a " + characteristics + ".");
             Console.WriteLine("I have " + numberOfPotion + " potion in my secret bag which you can't see. So remember your number of potions. In my bag are: ");
             foreach (string _item in inventory)
             {
@@ -66,7 +66,7 @@ namespace AdventureGame
                 {
                     for (int j = 0; j < Game._rooms[i].doors.Count - 1; j++)
                     {
-                        if (Game._rooms[i].nameOfRoom == _door.objectYouNeedToOpen)
+                        if (Game._rooms[i].nameOfRoom == _door.objectYouNeedToOpen || Game._currentRoom.inventory[i] == _door.objectYouNeedToOpen)
                             _isOpen = true;
                     }
                 }
@@ -117,7 +117,6 @@ namespace AdventureGame
                 }
                 else
                     inventory.Add(item);
-                Console.WriteLine("You have now: ");
                 foreach (string _item in inventory)
                 {
                     if (_item == "posion")
@@ -156,6 +155,13 @@ namespace AdventureGame
                         {
                             Game._currentRoom.doors[j].isOpen = true;
                             _doorIsOpen = true;
+                            Game._player.inventory.Remove(_item);
+                            Game._player.inventory.Remove(_object);
+                        }
+                        else if (_object.Equals(Game._currentRoom.inventory[i]))
+                        {
+                            Game._player.inventory.Remove(_item);
+                            Game._currentRoom.inventory.Remove(_object);
                         }
                     }
                 }
@@ -182,7 +188,7 @@ namespace AdventureGame
                     {
                         inventory.Remove("potion");
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                     }
                     Console.WriteLine("You drank your potion. Your healthpoints now are: " + _currentHealthpoints);

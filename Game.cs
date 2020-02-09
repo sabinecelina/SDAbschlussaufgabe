@@ -160,9 +160,11 @@ namespace AdventureGame
         }
         public void StartGame()
         {
-            Console.WriteLine(_player.startGameAdventure);
+            Console.WriteLine(_player.startGameAdventure + "\n");
             _player.DisplayCharacter();
+            Console.WriteLine("\n");
             _player.DisplayCommands();
+            Console.WriteLine("\n");
             _player.healthpoints = _currentHealthpoints;
             _currentRoom = _rooms[0];
             _rooms[0].ShowRoomDescription();

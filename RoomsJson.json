@@ -19,7 +19,7 @@
                 "inventory": [
                     "potion"
                 ],
-                "characteristics": "strong, but many HP",
+                "characteristics": "weak but mean",
                 "strength": 1,
                 "isGood": false,
                 "information": "none"
@@ -178,9 +178,9 @@
         "inventory": []
     },
     {
-        "nameOfRoom": "heart of labyrinth",
+        "nameOfRoom": "the heart of labyrinth",
         "location": 4,
-        "description": "When you walked in you triggered a foot trap and woke up two sleeping monsters.",
+        "description": "Remember why you are here",
         "doors": [
             {
                 "doorDirection": "w",
