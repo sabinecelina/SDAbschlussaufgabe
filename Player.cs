@@ -111,7 +111,7 @@ namespace AdventureGame
         }
         public void DisplayCommands()
         {
-            Console.WriteLine("commands (c) \n move north(n), move east (n), move south (s), move west (w)\n, look (l)\n inventory (i)\n take (t:item) <item>\n drop (d:item) <item>\n use (u) <item> with <object>\n attack (a:nameOfCharacter) <character>. ask (ask:nameOfCharacter) <character>\n take potion (p)\n save (save) game\n quit (q) game");
+            Console.WriteLine("commands (c): show Commands \n move north(n), move east (n), move south (s), move west (w)\n look (l)\n inventory (i)\n take (t:item) <item>\n drop (d:item) <item>\n use (u) <item> with <object>\n attack (a:nameOfCharacter) <character>. ask (ask:nameOfCharacter) <character>\n take potion (p)\n save (save) game\n quit (q) game");
         }
         public void TakeItem(string item)
         {

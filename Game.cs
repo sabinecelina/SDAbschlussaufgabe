@@ -76,7 +76,7 @@ namespace AdventureGame
                     case "t":
                         for (int m = 0; m < _currentRoom.inventory.Count; m++)
                         {
-                            if (_currentRoom.inventory[m] == input[1])
+                            if (input.Count() > 1 && _currentRoom.inventory[m] == input[1])
                             {
                                 _item = _currentRoom.inventory[m];
                                 _player.TakeItem(input[1]);
@@ -94,7 +94,7 @@ namespace AdventureGame
                     case "a":
                         for (int m = 0; m < _currentRoom.nPCs.Count; m++)
                         {
-                            if (_currentRoom.nPCs[m].name == input[1])
+                            if (input.Count() > 1 && _currentRoom.nPCs[m].name == input[1])
                             {
                                 _currentNPC = _currentRoom.nPCs[m];
                                 _currentNPC = _player.AttackNPC(_currentNPC);
@@ -104,7 +104,7 @@ namespace AdventureGame
                     case "ask":
                         for (int m = 0; m < _currentRoom.nPCs.Count; m++)
                         {
-                            if (_currentRoom.nPCs[m].name == input[1])
+                            if (input.Count() > 1 && _currentRoom.nPCs[m].name == input[1])
                             {
                                 _currentNPC = _currentRoom.nPCs[m];
                                 _currentNPC.GiveInformation();
@@ -162,6 +162,7 @@ namespace AdventureGame
         public void StartGame()
         {
             Console.WriteLine(_player.startGameAdventure);
+            _player.DisplayCommands();
             _rooms[0].ShowRoomDescription();
             _currentRoom = _rooms[0];
         }
