@@ -8,7 +8,7 @@ namespace AdventureGame
     {
         public int maxHealthpoints;
         public int location;
-        public int numberOfPotion = 0;
+        public int numberOfPotion;
         public string startGameAdventure;
         public string endGameAdventure;
 
@@ -19,8 +19,8 @@ namespace AdventureGame
         }
         public override void DisplayCharacter()
         {
-            Console.WriteLine("I am :" + name + "My characteristics are: " + characteristics);
-            Console.WriteLine("I have " + healthpoints + " healthpoints and in my bag are: ");
+            Console.WriteLine("I am " + name + " My characteristics are: " + characteristics);
+            Console.WriteLine("I have " + numberOfPotion + " potion in my secret bag which you can't see. So remember your number of potions. In my bag are: ");
             foreach (string _item in inventory)
             {
                 Console.WriteLine(_item);
@@ -45,10 +45,14 @@ namespace AdventureGame
                             Console.WriteLine(_door.informationHowToOpen);
                             Console.WriteLine("Please answer the question to open the door.");
                             string input = Console.ReadLine();
-                            if (input == _door.objectYouNeedToOpen)
+                            for (int j = 0; j < Game._player.inventory.Count; j++)
                             {
-                                _door.isOpen = true;
-                                _isOpen = true;
+                                if (input == _door.objectYouNeedToOpen || Game._player.inventory[j] == "thieftool")
+                                {
+                                    _door.isOpen = true;
+                                    _isOpen = true;
+                                }
+
                             }
                             this.location = _door.LeadsTo().location;
                             Console.WriteLine("You opened a door, Gratulation");
@@ -90,6 +94,7 @@ namespace AdventureGame
         }
         public void ShowInventory()
         {
+            Console.WriteLine("You have " + healthpoints + " healthpoints and: ");
             foreach (string _item in inventory)
             {
                 Console.WriteLine(_item);
@@ -101,19 +106,31 @@ namespace AdventureGame
         }
         public void TakeItem(string item)
         {
-            if (item == "gift")
+            if (inventory.Count <= 4)
             {
-                string[] _gift = new string[] { "potion", "posion" };
-                Random random = new Random();
-                int rnd = random.Next(0, 1);
-                inventory.Add(_gift[rnd]);
-                inventory.Remove(item);
-
+                if (item == "gift")
+                {
+                    string[] _gift = new string[] { "potion", "posion" };
+                    Random random = new Random();
+                    int rnd = random.Next(0, 2);
+                    inventory.Add(_gift[rnd]);
+                }
+                else
+                    inventory.Add(item);
+                Console.WriteLine("You have now: ");
+                foreach (string _item in inventory)
+                {
+                    if (_item == "posion")
+                    {
+                        Console.WriteLine("hahaha, you got a posion, you lost some healthpoints");
+                        Game._currentHealthpoints -= 15;
+                        inventory.Remove(_item);
+                    }
+                }
             }
-            inventory.Add(item);
-            Console.WriteLine("You have now: ");
+            else
+                Console.WriteLine("You already have enough in your bag. You can't take more");
             ShowInventory();
-
         }
         public override void dropItem(string item)
         {
@@ -161,7 +178,13 @@ namespace AdventureGame
                     if (_currentHealthpoints > maxHealthpoints)
                         _currentHealthpoints = maxHealthpoints;
                     numberOfPotion--;
-                    inventory.Remove("potion");
+                    try
+                    {
+                        inventory.Remove("potion");
+                    }
+                    catch (Exception e)
+                    {
+                    }
                     Console.WriteLine("You drank your potion. Your healthpoints now are: " + _currentHealthpoints);
                 }
                 else

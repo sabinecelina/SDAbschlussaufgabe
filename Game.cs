@@ -17,11 +17,9 @@ namespace AdventureGame
         private bool _gameOver = false;
         public static Room _currentRoom;
         public static NPC _currentNPC;
-        public static int _currentHealthpoints;
+        public static int _currentHealthpoints = 0;
         private Door _door;
-        private int _newLocation;
         public static bool _makeAMove;
-        public static bool _checkIfEnemyIsDead = false;
         private string _item;
         public static Game _game = new Game();
 
@@ -120,6 +118,11 @@ namespace AdventureGame
                     case "s":
                     case "e":
                     case "w":
+                        foreach (NPC npc in _currentRoom.nPCs)
+                        {
+                            _player.healthpoints = npc.AttackPlayer(_player);
+
+                        }
                         foreach (Door _rightDoor in _currentRoom.doors)
                         {
                             if (_rightDoor.doorDirection == input[0])
@@ -128,18 +131,10 @@ namespace AdventureGame
                                 _makeAMove = _player.MakeAMove(_door);
                             }
                         }
-
                         if (_makeAMove)
                         {
                             _currentRoom = _door.LeadsTo();
-
                             _currentRoom.ShowRoomDescription();
-                            _makeAMove = false;
-                            foreach (NPC _nPC in _currentRoom.nPCs)
-                            {
-                                _player.healthpoints = _currentHealthpoints;
-                                _nPC.AttackPlayerAfterHeJoinedRoom(_player);
-                            }
                         }
                         break;
                     case "q":
@@ -169,8 +164,8 @@ namespace AdventureGame
             _player.DisplayCharacter();
             _player.DisplayCommands();
             _player.healthpoints = _currentHealthpoints;
-            _rooms[0].ShowRoomDescription();
             _currentRoom = _rooms[0];
+            _rooms[0].ShowRoomDescription();
         }
         public string SaveGameRoom<Room>(string jsonPath, Room _room)
         {

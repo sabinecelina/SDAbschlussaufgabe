@@ -4,7 +4,7 @@ namespace AdventureGame
     {
         public string doorDirection;
         public bool isOpen;
-        public string leadsTo;
+        private string leadsTo;
         public string informationHowToOpen;
         public string objectYouNeedToOpen;
         public Door(string doorDirection, bool isOpen, string informationHowToOpen, string objectYouNeedToOpen)
@@ -20,9 +20,7 @@ namespace AdventureGame
             for (int i = 0; i < Game._rooms.Count; i++)
             {
                 if (Game._rooms[i].nameOfRoom == leadsTo)
-                {
-                    _room = Game._rooms[i];
-                }
+                    return Game._rooms[i];
             }
             return _room;
         }

@@ -60,7 +60,7 @@
             {
                 "doorDirection": "s",
                 "isOpen": false,
-                "leadsTo": "numberOne",
+                "leadsTo": "heart of labyrinth",
                 "informationHowToOpen": "You need to unlock the door in the monster room",
                 "objectYouNeedToOpen": "monster room"
             }
@@ -70,7 +70,7 @@
                 "name": "luckydeath",
                 "healthpoints": 100,
                 "inventory": [],
-                "characteristics": "funny, strange, introvert",
+                "characteristics": "funny, strange, introvert, sometimes he is good, sometimes not. It depends on the day",
                 "strength": 1,
                 "isGood": false,
                 "information": "none"
@@ -79,8 +79,20 @@
                 "name": "luckyone",
                 "healthpoints": 150,
                 "inventory": [],
-                "characteristics": "Thief, honesty",
+                "characteristics": "",
                 "strength": 1,
+                "isGood": true,
+                "information": "You need always a little bit of your voice to speek out loud"
+            },
+            {
+                "name": "monk",
+                "healthpoints": 40,
+                "inventory": [
+                    "potion",
+                    "thieftool"
+                ],
+                "characteristics": "Thief, honesty",
+                "strength": 2,
                 "isGood": true,
                 "information": "You need always a little bit of your voice to speek out loud"
             }

@@ -88,14 +88,6 @@ namespace AdventureGame
             Console.WriteLine("You got attackted. You have now: " + _player.healthpoints + " healthpoints");
             return _player.healthpoints;
         }
-        public Player AttackPlayerAfterHeJoinedRoom(Player _player)
-        {
-            if (Game._makeAMove)
-            {
-                AttackPlayer(_player);
-            }
-            return _player;
-        }
         public bool IsAlive()
         {
             if (healthpoints <= 0)
@@ -108,6 +100,13 @@ namespace AdventureGame
             if (isGood)
             {
                 DisplayCharacter();
+                for (int i = 0; i < inventory.Count; i++)
+                {
+                    if (Game._player.inventory.Count <= 4)
+                        this.dropItem("I give you this item: " + inventory[i]);
+                    else
+                        Console.WriteLine("I can't give you an item, you already have enough");
+                }
                 Console.WriteLine(information);
             }
             else if (!isGood)
