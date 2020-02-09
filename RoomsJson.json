@@ -20,7 +20,7 @@
                     "potion"
                 ],
                 "characteristics": "strong, but many HP",
-                "strength": 2,
+                "strength": 1,
                 "isGood": false,
                 "information": "none"
             }
@@ -80,7 +80,7 @@
                 "healthpoints": 150,
                 "inventory": [],
                 "characteristics": "Thief, honesty",
-                "strength": 2,
+                "strength": 1,
                 "isGood": true,
                 "information": "You need always a little bit of your voice to speek out loud"
             }
@@ -110,7 +110,7 @@
                 "healthpoints": 150,
                 "inventory": [],
                 "characteristics": "keycarrier, unexpected",
-                "strength": 2,
+                "strength": 1,
                 "isGood": false,
                 "information": "none"
             }
@@ -147,7 +147,7 @@
                     "potion"
                 ],
                 "characteristics": "evil, just evil",
-                "strength": 2,
+                "strength": 1,
                 "isGood": false,
                 "information": "none"
             },
@@ -158,7 +158,7 @@
                     "treasury"
                 ],
                 "characteristics": "loves chaos, hates people",
-                "strength": 2,
+                "strength": 1,
                 "isGood": false,
                 "information": "none"
             }

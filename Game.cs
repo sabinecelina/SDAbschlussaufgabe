@@ -17,6 +17,7 @@ namespace AdventureGame
         private bool _gameOver = false;
         public static Room _currentRoom;
         public static NPC _currentNPC;
+        private int _currentHealthpoints = _player.healthpoints;
         private Door _door;
         private int _newLocation;
         public static bool _makeAMove;
@@ -71,7 +72,7 @@ namespace AdventureGame
                         _player.DisplayCommands();
                         break;
                     case "p":
-                        _player.TakePotion();
+                        _currentHealthpoints = _player.TakePotion(_currentHealthpoints);
                         break;
                     case "t":
                         for (int m = 0; m < _currentRoom.inventory.Count; m++)
@@ -163,6 +164,7 @@ namespace AdventureGame
         {
             Console.WriteLine(_player.startGameAdventure);
             _player.DisplayCommands();
+            _player.healthpoints = _currentHealthpoints;
             _rooms[0].ShowRoomDescription();
             _currentRoom = _rooms[0];
         }
