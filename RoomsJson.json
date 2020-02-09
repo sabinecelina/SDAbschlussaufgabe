@@ -108,16 +108,16 @@
             {
                 "name": "enemy",
                 "healthpoints": 150,
-                "inventory": [],
+                "inventory": [
+                    "key"
+                ],
                 "characteristics": "keycarrier, unexpected",
                 "strength": 1,
                 "isGood": false,
                 "information": "none"
             }
         ],
-        "inventory": [
-            "key"
-        ]
+        "inventory": []
     },
     {
         "nameOfRoom": "monster room",
@@ -129,7 +129,7 @@
                 "isOpen": false,
                 "leadsTo": "labyrinth",
                 "informationHowToOpen": "One man says to another: I will immediately ask you a question that you can easily answer with yes or no. It won't be a difficult question either, because you will know the correct answer. Still, you won't be able to tell me the correct answer. Anyone else might be able to tell me the correct answer, but you couldn't. However, you are the only person in the world who knows the right answer. What question will he ask him?",
-                "objectYouNeedToOpen": "will zou answer this question with no?"
+                "objectYouNeedToOpen": "will you answer this question with no?"
             },
             {
                 "doorDirection": "s",

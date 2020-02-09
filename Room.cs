@@ -28,9 +28,12 @@ namespace AdventureGame
         public void ShowRoomDescription()
         {
             Console.WriteLine("You are in a " + nameOfRoom + ". " + description + " You can see: ");
-            foreach (string _item in inventory)
+            if (inventory.Count >= 1)
             {
-                Console.WriteLine(_item);
+                foreach (string _item in inventory)
+                {
+                    Console.WriteLine(_item);
+                }
             }
             if (nPCs.Count != 0)
             {

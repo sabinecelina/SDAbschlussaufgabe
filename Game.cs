@@ -17,10 +17,11 @@ namespace AdventureGame
         private bool _gameOver = false;
         public static Room _currentRoom;
         public static NPC _currentNPC;
-        private int _currentHealthpoints = _player.healthpoints;
+        public static int _currentHealthpoints;
         private Door _door;
         private int _newLocation;
         public static bool _makeAMove;
+        public static bool _checkIfEnemyIsDead = false;
         private string _item;
         public static Game _game = new Game();
 
@@ -46,6 +47,7 @@ namespace AdventureGame
             {
                 string json = r.ReadToEnd();
                 _player = JsonConvert.DeserializeObject<Player>(json);
+                _currentHealthpoints = _player.healthpoints;
             }
         }
         public void PlayGame()
@@ -93,12 +95,14 @@ namespace AdventureGame
                         _player.UseItem(_player);
                         break;
                     case "a":
+                        _player.healthpoints = _currentHealthpoints;
                         for (int m = 0; m < _currentRoom.nPCs.Count; m++)
                         {
                             if (input.Count() > 1 && _currentRoom.nPCs[m].name == input[1])
                             {
                                 _currentNPC = _currentRoom.nPCs[m];
                                 _currentNPC = _player.AttackNPC(_currentNPC);
+                                _currentHealthpoints = _currentNPC.AttackPlayer(_player);
                             }
                         }
                         break;
@@ -116,25 +120,24 @@ namespace AdventureGame
                     case "s":
                     case "e":
                     case "w":
-                        for (int g = 0; g < _currentRoom.doors.Count; g++)
+                        foreach (Door _rightDoor in _currentRoom.doors)
                         {
-                            if (_currentRoom.doors[g].doorDirection == input[0])
+                            if (_rightDoor.doorDirection == input[0])
                             {
-                                _door = _currentRoom.doors[g];
-                                _currentRoom = _currentRoom.doors[g].LeadsTo();
+                                _door = _rightDoor;
                                 _makeAMove = _player.MakeAMove(_door);
                             }
-                            else
-                            {
-                                Console.WriteLine("There is no door. Please try it with an another door.");
-                            }
                         }
+
                         if (_makeAMove)
                         {
+                            _currentRoom = _door.LeadsTo();
+
                             _currentRoom.ShowRoomDescription();
                             _makeAMove = false;
                             foreach (NPC _nPC in _currentRoom.nPCs)
                             {
+                                _player.healthpoints = _currentHealthpoints;
                                 _nPC.AttackPlayerAfterHeJoinedRoom(_player);
                             }
                         }
@@ -157,12 +160,13 @@ namespace AdventureGame
             {
                 Console.WriteLine(_player.endGameAdventure);
             }
-            PlayGame();
+            _game.PlayGame();
 
         }
         public void StartGame()
         {
             Console.WriteLine(_player.startGameAdventure);
+            _player.DisplayCharacter();
             _player.DisplayCommands();
             _player.healthpoints = _currentHealthpoints;
             _rooms[0].ShowRoomDescription();

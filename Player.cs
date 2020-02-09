@@ -20,7 +20,7 @@ namespace AdventureGame
         public override void DisplayCharacter()
         {
             Console.WriteLine("I am :" + name + "My characteristics are: " + characteristics);
-            Console.WriteLine("I have :" + maxHealthpoints + "life and in my bag are: ");
+            Console.WriteLine("I have " + healthpoints + " healthpoints and in my bag are: ");
             foreach (string _item in inventory)
             {
                 Console.WriteLine(_item);
@@ -33,8 +33,6 @@ namespace AdventureGame
             {
                 if (_door.isOpen)
                 {
-                    //Console Write Line Testing
-                    Console.WriteLine(_door.LeadsTo().location);
                     this.location = _door.LeadsTo().location;
                     _isOpen = true;
                 }
@@ -53,18 +51,8 @@ namespace AdventureGame
                                 _isOpen = true;
                             }
                             this.location = _door.LeadsTo().location;
+                            Console.WriteLine("You opened a door, Gratulation");
                         }
-                    }
-                }
-            }
-            if (!_isOpen)
-            {
-                for (int i = 0; i <= Game._rooms.Count - 1; i++)
-                {
-                    for (int j = 0; j < Game._rooms[i].nPCs.Count - 1; j++)
-                    {
-                        if (Game._rooms[i].nPCs[j].name == _door.objectYouNeedToOpen && !Game._rooms[i].nPCs[j].isAlive)
-                            _isOpen = true;
                     }
                 }
             }
@@ -83,10 +71,6 @@ namespace AdventureGame
             {
                 Console.WriteLine("This door is closed. You need to open it to step in.");
                 Console.WriteLine(_door.informationHowToOpen);
-            }
-            else
-            {
-                Console.WriteLine("You opened a door, Gratulation");
             }
             Random random = new Random();
             int rnd = random.Next(0, Game._rooms.Count - 1);
@@ -123,6 +107,7 @@ namespace AdventureGame
                 Random random = new Random();
                 int rnd = random.Next(0, 1);
                 inventory.Add(_gift[rnd]);
+                inventory.Remove(item);
 
             }
             inventory.Add(item);
@@ -146,11 +131,11 @@ namespace AdventureGame
             string _object = Console.ReadLine();
             for (int i = 0; i <= inventory.Count - 1; i++)
             {
-                if (Game._player.inventory[i] == _item)
+                if (inventory[i].Equals(_item))
                 {
                     for (int j = 0; j <= Game._currentRoom.doors.Count - 1; j++)
                     {
-                        if (_object == Game._currentRoom.doors[j].objectYouNeedToOpen)
+                        if (_object.Equals(Game._currentRoom.doors[j].objectYouNeedToOpen))
                         {
                             Game._currentRoom.doors[j].isOpen = true;
                             _doorIsOpen = true;
@@ -172,12 +157,12 @@ namespace AdventureGame
             {
                 if (_currentHealthpoints != maxHealthpoints)
                 {
-                    _currentHealthpoints += (int)(_currentHealthpoints * 0.2f);
+                    _currentHealthpoints += 35;
                     if (_currentHealthpoints > maxHealthpoints)
                         _currentHealthpoints = maxHealthpoints;
                     numberOfPotion--;
                     inventory.Remove("potion");
-                    Console.WriteLine("You drank your potion. Your healthpoints now are: " + healthpoints);
+                    Console.WriteLine("You drank your potion. Your healthpoints now are: " + _currentHealthpoints);
                 }
                 else
                     Console.WriteLine("You have enough live. You don't need a potion");
@@ -213,7 +198,6 @@ namespace AdventureGame
                 _nPC.healthpoints -= (int)(healthpoints * damage);
             }
             Console.WriteLine("You attacked " + _nPC.name + ". His healthpoints now are: " + _nPC.healthpoints);
-            _nPC.AttackPlayer(Game._player);
             return _nPC;
         }
 

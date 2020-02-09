@@ -22,15 +22,12 @@ namespace AdventureGame
             Console.WriteLine("I am :" + name + "My characteristics are: " + characteristics);
             //TODO name: the warrior, the lucky one, the thief
         }
-        public override void dropItem(string item)
+        public override void dropItem(string _item)
         {
-            if (IsAlive())
-            {
-                Game._player.inventory.Add(item);
-                inventory.Remove(item);
-            }
+            Game._player.inventory.Add(_item);
+            inventory.Remove(_item);
         }
-        public Player AttackPlayer(Player _player)
+        public int AttackPlayer(Player _player)
         {
             double minDamage;
             double maxDamage;
@@ -39,44 +36,57 @@ namespace AdventureGame
             {
                 if (this.strength == 1)
                 {
-                    minDamage = 0.0;
+                    minDamage = 0.1;
                     maxDamage = 0.2;
                     double damage = random.NextDouble() * (maxDamage - minDamage) + minDamage;
-                    _player.healthpoints -= (int)(healthpoints * damage);
+                    _player.healthpoints -= (int)(_player.maxHealthpoints * damage);
                 }
                 if (this.strength == 2)
                 {
                     minDamage = 0.2f;
                     maxDamage = 0.4f;
                     double damage = random.NextDouble() * (maxDamage - minDamage) + minDamage;
-                    _player.healthpoints -= (int)(healthpoints * damage);
+                    _player.healthpoints -= (int)(_player.maxHealthpoints * damage);
                 }
                 if (this.strength == 3)
                 {
                     minDamage = 0.4f;
                     maxDamage = 0.6f;
                     double damage = random.NextDouble() * (maxDamage - minDamage) + minDamage;
-                    _player.healthpoints -= (int)(healthpoints * damage);
+                    _player.healthpoints -= (int)(_player.maxHealthpoints * damage);
                 }
 
             }
             else if (!IsAlive())
             {
+                bool _isOpen = false;
                 Console.WriteLine("You killed him");
-                for (int i = 0; i <= Game._rooms.Count - 1; i++)
+                if (!_isOpen)
                 {
-                    for (int j = 0; j <= Game._rooms[i].nPCs.Count - 1; j++)
+                    for (int i = 0; i <= Game._rooms.Count - 1; i++)
                     {
-                        if (Game._rooms[i].nPCs[j].strength == 2)
+                        for (int j = 0; j < Game._rooms[i].doors.Count - 1; j++)
                         {
-                            Game._rooms[i].nPCs.Remove(Game._rooms[i].nPCs[j]);
+                            if (this.name == Game._rooms[i].doors[j].objectYouNeedToOpen)
+                                Game._rooms[i].doors[j].isOpen = true;
+                            _isOpen = true;
                         }
-
                     }
                 }
+                if (inventory.Count > 1)
+                {
+                    foreach (string _item in inventory)
+                    {
+                        dropItem(_item);
+                    }
+
+                }
+                else if (inventory.Count != 0)
+                    dropItem(inventory[0]);
+                Game._currentRoom.nPCs.Remove(this);
             }
             Console.WriteLine("You got attackted. You have now: " + _player.healthpoints + " healthpoints");
-            return _player;
+            return _player.healthpoints;
         }
         public Player AttackPlayerAfterHeJoinedRoom(Player _player)
         {
