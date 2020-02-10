@@ -4,7 +4,7 @@ namespace AdventureGame
     {
         public string doorDirection;
         public bool isOpen;
-        private string leadsTo;
+        public string leadsTo;
         public string informationHowToOpen;
         public string objectYouNeedToOpen;
         public Door(string doorDirection, bool isOpen, string leadsTo, string informationHowToOpen, string objectYouNeedToOpen)

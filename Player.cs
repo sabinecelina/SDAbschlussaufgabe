@@ -70,8 +70,10 @@ namespace AdventureGame
                 {
                     for (int j = 0; j < Game._rooms[i].doors.Count - 1; j++)
                     {
-                        if (Game._rooms[i].nameOfRoom == _door.objectYouNeedToOpen)
+                        if (Game._rooms[i].doors[j].objectYouNeedToOpen == Game._currentRoom.nameOfRoom && Game._rooms[i].doors[j].isOpen)
+                        {
                             _isOpen = true;
+                        }
                     }
                 }
             }
@@ -163,11 +165,14 @@ namespace AdventureGame
                             _doorIsOpen = true;
                             Game._player.inventory.Remove(_item);
                             Game._player.inventory.Remove(_object);
-                        }
-                        else if (_object.Equals(Game._currentRoom.inventory[i]) && Game._currentRoom.inventory.Count >= 1)
-                        {
-                            Game._player.inventory.Remove(_item);
                             Game._currentRoom.inventory.Remove(_object);
+                        }
+                    }
+                    for (int m = 0; m < Game._currentRoom.nPCs.Count; m++)
+                    {
+                        if (_object.Equals(Game._currentRoom.nPCs[m].name))
+                        {
+                            Game._currentRoom.nPCs[m].isAlive = false;
                         }
                     }
                 }

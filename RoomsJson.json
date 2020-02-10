@@ -60,7 +60,7 @@
             {
                 "doorDirection": "s",
                 "isOpen": false,
-                "leadsTo": "heart of labyrinth",
+                "leadsTo": "the heart of labyrinth",
                 "informationHowToOpen": "You need to unlock the door in the monster room",
                 "objectYouNeedToOpen": "monster room"
             }
@@ -129,7 +129,10 @@
                 "information": "none"
             }
         ],
-        "inventory": []
+        "inventory": [
+            "old books",
+            "furniture"
+        ]
     },
     {
         "nameOfRoom": "monster room",
@@ -146,7 +149,7 @@
             {
                 "doorDirection": "s",
                 "isOpen": false,
-                "leadsTo": "heart of labyrinth",
+                "leadsTo": "the heart of labyrinth",
                 "informationHowToOpen": "You need a key",
                 "objectYouNeedToOpen": "treasury"
             }
@@ -175,7 +178,10 @@
                 "information": "none"
             }
         ],
-        "inventory": []
+        "inventory": [
+            "foottrap",
+            "old brickets"
+        ]
     },
     {
         "nameOfRoom": "the heart of labyrinth",
@@ -208,6 +214,9 @@
                 "information": "none"
             }
         ],
-        "inventory": []
+        "inventory": [
+            "Excalibur",
+            "treasury"
+        ]
     }
 ]

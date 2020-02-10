@@ -130,7 +130,6 @@ namespace AdventureGame
                                 {
                                     if (npc.isAlive)
                                         _currentHealthpoints = npc.AttackPlayer(_player);
-
                                 }
 
                             }
