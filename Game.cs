@@ -23,6 +23,7 @@ namespace AdventureGame
         private string _item;
         public static Game _game = new Game();
 
+
         public static void Main()
         {
             _game.LoadGame();
@@ -81,18 +82,18 @@ namespace AdventureGame
                             if (input.Count() > 1 && _currentRoom.inventory[m] == input[1])
                             {
                                 _item = _currentRoom.inventory[m];
-                                _player.TakeItem(input[1]);
+                                _player.TakeItem(_player, input[1]);
                                 _currentRoom.inventory.Remove(_item);
                             }
                         }
                         _player.healthpoints = _currentHealthpoints;
                         break;
                     case "d":
-                        _player.dropItem(input[1]);
+                        _player.dropItem(_player, input[1]);
                         _currentRoom.inventory.Add(input[1]);
                         break;
                     case "u":
-                        _player.UseItem(_player);
+                        _player.UseItem(_player, _currentRoom);
                         break;
                     case "a":
                         _player.healthpoints = _currentHealthpoints;
@@ -144,7 +145,7 @@ namespace AdventureGame
                             if (_rightDoor.doorDirection == input[0])
                             {
                                 _door = _rightDoor;
-                                _makeAMove = _player.MakeAMove(_door);
+                                _makeAMove = _player.MakeAMove(_player, _door, _rooms, _currentRoom);
                             }
                         }
                         if (_makeAMove)
@@ -164,12 +165,13 @@ namespace AdventureGame
             else if (IsGameOver())
             {
                 Console.WriteLine("You died, this game is over");
-                Thread.Sleep(5000);
-                Environment.Exit(0);
+                _game.QuitGame();
             }
             else if (IsGameWinning())
             {
                 Console.WriteLine(_player.endGameAdventure);
+                _game.QuitGame();
+
             }
             else
                 Console.WriteLine("Your input was invalid, please try it again.");

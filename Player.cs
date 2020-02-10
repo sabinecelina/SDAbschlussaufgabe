@@ -8,7 +8,7 @@ namespace AdventureGame
     {
         public int maxHealthpoints;
         public int location;
-        public int numberOfPotion;
+        private int numberOfPotion;
         public string startGameAdventure;
         public string endGameAdventure;
 
@@ -26,10 +26,10 @@ namespace AdventureGame
                 Console.WriteLine(_item);
             }
         }
-        public bool MakeAMove(Door _door)
+        public bool MakeAMove(Player _player, Door _door, List<Room> _rooms, Room _currentRoom)
         {
             bool _isOpen = false;
-            for (int i = 0; i < Game._rooms.Count; i++)
+            for (int i = 0; i < _rooms.Count; i++)
             {
                 if (_door.isOpen)
                 {
@@ -45,9 +45,9 @@ namespace AdventureGame
                             Console.WriteLine(_door.informationHowToOpen);
                             Console.WriteLine("Please answer the question to open the door.");
                             string input = Console.ReadLine();
-                            for (int j = 0; j < Game._player.inventory.Count; j++)
+                            for (int j = 0; j < _player.inventory.Count; j++)
                             {
-                                if (input == _door.objectYouNeedToOpen || Game._player.inventory[j] == "thieftool")
+                                if (input == _door.objectYouNeedToOpen || _player.inventory[j] == "thieftool")
                                 {
                                     _door.isOpen = true;
                                     _isOpen = true;
@@ -66,11 +66,11 @@ namespace AdventureGame
             }
             if (!_isOpen)
             {
-                for (int i = 0; i <= Game._rooms.Count - 1; i++)
+                for (int i = 0; i <= _rooms.Count - 1; i++)
                 {
-                    for (int j = 0; j < Game._rooms[i].doors.Count - 1; j++)
+                    for (int j = 0; j < _rooms[i].doors.Count - 1; j++)
                     {
-                        if (Game._rooms[i].doors[j].objectYouNeedToOpen == Game._currentRoom.nameOfRoom && Game._rooms[i].doors[j].isOpen)
+                        if (_rooms[i].doors[j].objectYouNeedToOpen == _currentRoom.nameOfRoom && _rooms[i].doors[j].isOpen)
                         {
                             _isOpen = true;
                             this.location = _door.LeadsTo().location;
@@ -84,15 +84,15 @@ namespace AdventureGame
                 Console.WriteLine(_door.informationHowToOpen);
             }
             Random random = new Random();
-            int rnd = random.Next(0, Game._rooms.Count - 1);
-            for (int i = 0; i <= Game._rooms.Count - 1; i++)
+            int rnd = random.Next(0, _rooms.Count - 1);
+            for (int i = 0; i <= _rooms.Count - 1; i++)
             {
-                for (int j = 0; j <= Game._rooms[i].nPCs.Count - 1; j++)
+                for (int j = 0; j <= _rooms[i].nPCs.Count - 1; j++)
                 {
-                    if (Game._rooms[i].nPCs[j].strength == 2)
+                    if (_rooms[i].nPCs[j].strength == 2)
                     {
-                        Game._rooms[rnd].nPCs.Add(Game._rooms[i].nPCs[j]);
-                        Game._rooms[i].nPCs.Remove(Game._rooms[i].nPCs[j]);
+                        _rooms[rnd].nPCs.Add(_rooms[i].nPCs[j]);
+                        _rooms[i].nPCs.Remove(_rooms[i].nPCs[j]);
                     }
 
                 }
@@ -109,9 +109,9 @@ namespace AdventureGame
         }
         public void DisplayCommands()
         {
-            Console.WriteLine("commands (c): show Commands \n move north(n), move east (n), move south (s), move west (w)\n look (l)\n inventory (i)\n take (t:item) <item>\n drop (d:item) <item>\n use (u) <item> with <object>\n attack (a:nameOfCharacter) <character>.\n ask (ask:nameOfCharacter) <character>\n take potion (p)\n save (save) game\n quit (q) game");
+            Console.WriteLine("commands (c): show Commands \n move north(n), move east (e), move south (s), move west (w)\n look (l)\n inventory (i)\n take (t:item) <item>\n drop (d:item) <item>\n use (u) <item> with <object>\n attack (a:nameOfCharacter) <character>.\n ask (ask:nameOfCharacter) <character>\n take potion (p)\n save (save) game\n quit (q) game");
         }
-        public void TakeItem(string item)
+        public void TakeItem(Player _player, string item)
         {
             if (inventory.Count <= 4)
             {
@@ -130,7 +130,7 @@ namespace AdventureGame
                     if (item.Equals("posion"))
                     {
                         Console.WriteLine("hahaha, you got a posion, you lost some healthpoints");
-                        Game._currentHealthpoints -= 15;
+                        _player.healthpoints -= 15;
                         inventory.Remove(item);
                         inventory.Remove("gift");
                     }
@@ -140,12 +140,12 @@ namespace AdventureGame
                 Console.WriteLine("You already have enough in your bag. You can't take more");
             ShowInventory();
         }
-        public override void dropItem(string item)
+        public override void dropItem(Player _player, string item)
         {
             inventory.Remove(item);
             Console.WriteLine("You removed this " + item);
         }
-        public void UseItem(Player _player)
+        public void UseItem(Player _player, Room _currentRoom)
         {
             bool _doorIsOpen = false;
             Console.WriteLine("Which item do you want to use?");
@@ -158,23 +158,23 @@ namespace AdventureGame
             {
                 if (inventory[i].Equals(_item))
                 {
-                    for (int j = 0; j <= Game._currentRoom.doors.Count - 1; j++)
+                    for (int j = 0; j <= _currentRoom.doors.Count - 1; j++)
                     {
-                        if (_object.Equals(Game._currentRoom.doors[j].objectYouNeedToOpen))
+                        if (_object.Equals(_currentRoom.doors[j].objectYouNeedToOpen))
                         {
-                            Game._currentRoom.doors[j].isOpen = true;
+                            _currentRoom.doors[j].isOpen = true;
                             _doorIsOpen = true;
-                            Game._player.inventory.Remove(_item);
-                            Game._player.inventory.Remove(_object);
-                            Game._currentRoom.inventory.Remove(_object);
+                            _player.inventory.Remove(_item);
+                            _player.inventory.Remove(_object);
+                            _currentRoom.inventory.Remove(_object);
                         }
                     }
-                    for (int m = 0; m < Game._currentRoom.nPCs.Count; m++)
+                    for (int m = 0; m < _currentRoom.nPCs.Count; m++)
                     {
-                        if (_object.Equals(Game._currentRoom.nPCs[m].name))
+                        if (_object.Equals(_currentRoom.nPCs[m].name))
                         {
-                            Game._currentRoom.nPCs[m].isAlive = false;
-                            Console.WriteLine("You attacked " + Game._currentRoom.nPCs[m].name + " and killed him.");
+                            _currentRoom.nPCs[m].isAlive = false;
+                            Console.WriteLine("You attacked " + _currentRoom.nPCs[m].name + " and killed him.");
                         }
                     }
                 }

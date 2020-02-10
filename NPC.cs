@@ -22,11 +22,11 @@ namespace AdventureGame
             Console.WriteLine("I am a " + name + ". My characteristics are: " + characteristics);
             //TODO name: the warrior, the lucky one, the thief
         }
-        public override void dropItem(string _item)
+        public override void dropItem(Player _player, string _item)
         {
-            if (Game._player.inventory.Count <= 4)
+            if (_player.inventory.Count <= 4)
             {
-                Game._player.inventory.Add(_item);
+                _player.inventory.Add(_item);
             }
             else
             {
@@ -88,14 +88,14 @@ namespace AdventureGame
                     foreach (string _item in inventory)
                     {
                         if (_player.inventory.Count < 4)
-                            dropItem(_item);
+                            dropItem(_player, _item);
                         else
                             Console.WriteLine("I can't give you more because your bag is full");
                     }
 
                 }
                 else if (inventory.Count == 1 && inventory.Count != 0)
-                    dropItem(inventory[0]);
+                    dropItem(_player, inventory[0]);
                 else
                     Game._currentRoom.nPCs.Remove(this);
             }
@@ -111,7 +111,7 @@ namespace AdventureGame
                     if (Game._player.inventory.Count <= 4)
                     {
                         Console.WriteLine("I will give you: " + inventory[i]);
-                        this.dropItem(inventory[i]);
+                        this.dropItem(Game._player, inventory[i]);
 
                     }
                     else
