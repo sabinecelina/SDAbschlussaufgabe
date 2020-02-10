@@ -73,6 +73,7 @@ namespace AdventureGame
                         if (Game._rooms[i].doors[j].objectYouNeedToOpen == Game._currentRoom.nameOfRoom && Game._rooms[i].doors[j].isOpen)
                         {
                             _isOpen = true;
+                            this.location = _door.LeadsTo().location;
                         }
                     }
                 }
@@ -173,6 +174,7 @@ namespace AdventureGame
                         if (_object.Equals(Game._currentRoom.nPCs[m].name))
                         {
                             Game._currentRoom.nPCs[m].isAlive = false;
+                            Console.WriteLine("You attacked " + Game._currentRoom.nPCs[m].name + " and killed him.");
                         }
                     }
                 }
