@@ -24,7 +24,15 @@ namespace AdventureGame
         }
         public override void dropItem(string _item)
         {
-            Game._player.inventory.Add(_item);
+            if (Game._player.inventory.Count >= 4)
+            {
+                Game._player.inventory.Add(_item);
+
+            }
+            else
+            {
+                Game._currentRoom.inventory.Add(_item);
+            }
             inventory.Remove(_item);
         }
         public int AttackPlayer(Player _player)
@@ -32,7 +40,7 @@ namespace AdventureGame
             double minDamage;
             double maxDamage;
             Random random = new Random();
-            if (IsAlive())
+            if (isAlive)
             {
                 if (this.strength == 1)
                 {
@@ -55,9 +63,10 @@ namespace AdventureGame
                     double damage = random.NextDouble() * (maxDamage - minDamage) + minDamage;
                     _player.healthpoints -= (int)(_player.maxHealthpoints * damage);
                 }
+                Console.WriteLine("You got attackted. You have now: " + _player.healthpoints + " healthpoints");
 
             }
-            else if (!IsAlive())
+            else if (!isAlive)
             {
                 bool _isOpen = false;
                 Console.WriteLine("You killed him");
@@ -68,8 +77,10 @@ namespace AdventureGame
                         for (int j = 0; j < Game._rooms[i].doors.Count - 1; j++)
                         {
                             if (this.name == Game._rooms[i].doors[j].objectYouNeedToOpen)
+                            {
                                 Game._rooms[i].doors[j].isOpen = true;
-                            _isOpen = true;
+                                _isOpen = true;
+                            }
                         }
                     }
                 }
@@ -83,17 +94,10 @@ namespace AdventureGame
                 }
                 else if (inventory.Count != 0)
                     dropItem(inventory[0]);
-                Game._currentRoom.nPCs.Remove(this);
+                else
+                    Game._currentRoom.nPCs.Remove(this);
             }
-            Console.WriteLine("You got attackted. You have now: " + _player.healthpoints + " healthpoints");
             return _player.healthpoints;
-        }
-        public bool IsAlive()
-        {
-            if (healthpoints <= 0)
-                return !isAlive;
-            else
-                return isAlive;
         }
         public void GiveInformation()
         {

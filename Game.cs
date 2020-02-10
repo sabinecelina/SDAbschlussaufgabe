@@ -63,7 +63,7 @@ namespace AdventureGame
                 switch (input[0])
                 {
                     case "l":
-                        _currentRoom.ShowRoomDescription();
+                        _currentRoom.ShowRoomDescription(_currentRoom);
                         break;
                     case "i":
                         _player.ShowInventory();
@@ -100,7 +100,10 @@ namespace AdventureGame
                             {
                                 _currentNPC = _currentRoom.nPCs[m];
                                 _currentNPC = _player.AttackNPC(_currentNPC);
-                                _currentHealthpoints = _currentNPC.AttackPlayer(_player);
+                                if (_currentNPC.isAlive)
+                                    _currentHealthpoints = _currentNPC.AttackPlayer(_player);
+                                else
+                                    _currentHealthpoints = _currentNPC.AttackPlayer(_player);
                             }
                         }
                         break;
@@ -118,9 +121,20 @@ namespace AdventureGame
                     case "s":
                     case "e":
                     case "w":
-                        foreach (NPC npc in _currentRoom.nPCs)
+                        try
                         {
-                            _player.healthpoints = npc.AttackPlayer(_player);
+                            {
+                                foreach (NPC npc in _currentRoom.nPCs)
+                                {
+                                    _player.healthpoints = npc.AttackPlayer(_player);
+
+                                }
+
+                            }
+
+                        }
+                        catch (Exception)
+                        {
 
                         }
                         foreach (Door _rightDoor in _currentRoom.doors)
@@ -134,7 +148,7 @@ namespace AdventureGame
                         if (_makeAMove)
                         {
                             _currentRoom = _door.LeadsTo();
-                            _currentRoom.ShowRoomDescription();
+                            _currentRoom.ShowRoomDescription(_currentRoom);
                         }
                         break;
                     case "q":
@@ -167,7 +181,7 @@ namespace AdventureGame
             Console.WriteLine("\n");
             _player.healthpoints = _currentHealthpoints;
             _currentRoom = _rooms[0];
-            _rooms[0].ShowRoomDescription();
+            _rooms[0].ShowRoomDescription(_currentRoom);
         }
         public string SaveGameRoom<Room>(string jsonPath, Room _room)
         {

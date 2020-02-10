@@ -66,7 +66,7 @@ namespace AdventureGame
                 {
                     for (int j = 0; j < Game._rooms[i].doors.Count - 1; j++)
                     {
-                        if (Game._rooms[i].nameOfRoom == _door.objectYouNeedToOpen || Game._currentRoom.inventory[i] == _door.objectYouNeedToOpen)
+                        if (Game._rooms[i].nameOfRoom == _door.objectYouNeedToOpen)
                             _isOpen = true;
                     }
                 }
@@ -108,22 +108,24 @@ namespace AdventureGame
         {
             if (inventory.Count <= 4)
             {
-                if (item == "gift")
+                inventory.Add(item);
+                if (item.Equals("gift"))
                 {
-                    string[] _gift = new string[] { "potion", "posion" };
+                    string[] _gift = new string[] { "potion", "posion", "potion", "potion" };
                     Random random = new Random();
-                    int rnd = random.Next(0, 2);
-                    inventory.Add(_gift[rnd]);
-                }
-                else
-                    inventory.Add(item);
-                foreach (string _item in inventory)
-                {
-                    if (_item == "posion")
+                    int rnd = random.Next(0, 4);
+                    item = _gift[rnd];
+                    if (item.Equals("potion"))
+                    {
+                        inventory.Add(item);
+                        inventory.Remove("gift");
+                    }
+                    if (item.Equals("posion"))
                     {
                         Console.WriteLine("hahaha, you got a posion, you lost some healthpoints");
                         Game._currentHealthpoints -= 15;
-                        inventory.Remove(_item);
+                        inventory.Remove(item);
+                        inventory.Remove("gift");
                     }
                 }
             }
@@ -227,6 +229,8 @@ namespace AdventureGame
                 _nPC.healthpoints -= (int)(healthpoints * damage);
             }
             Console.WriteLine("You attacked " + _nPC.name + ". His healthpoints now are: " + _nPC.healthpoints);
+            if (_nPC.healthpoints < 0)
+                _nPC.isAlive = false;
             return _nPC;
         }
 

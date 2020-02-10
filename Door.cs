@@ -7,10 +7,11 @@ namespace AdventureGame
         private string leadsTo;
         public string informationHowToOpen;
         public string objectYouNeedToOpen;
-        public Door(string doorDirection, bool isOpen, string informationHowToOpen, string objectYouNeedToOpen)
+        public Door(string doorDirection, bool isOpen, string leadsTo, string informationHowToOpen, string objectYouNeedToOpen)
         {
             this.doorDirection = doorDirection;
             this.isOpen = isOpen;
+            this.leadsTo = leadsTo;
             this.informationHowToOpen = informationHowToOpen;
             this.objectYouNeedToOpen = objectYouNeedToOpen;
         }
