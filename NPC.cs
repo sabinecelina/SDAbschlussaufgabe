@@ -19,15 +19,14 @@ namespace AdventureGame
 
         public override void DisplayCharacter()
         {
-            Console.WriteLine("I am :" + name + "My characteristics are: " + characteristics);
+            Console.WriteLine("I am a " + name + ". My characteristics are: " + characteristics);
             //TODO name: the warrior, the lucky one, the thief
         }
         public override void dropItem(string _item)
         {
-            if (Game._player.inventory.Count >= 4)
+            if (Game._player.inventory.Count <= 4)
             {
                 Game._player.inventory.Add(_item);
-
             }
             else
             {
@@ -40,7 +39,7 @@ namespace AdventureGame
             double minDamage;
             double maxDamage;
             Random random = new Random();
-            if (isAlive)
+            if (isAlive && !isGood)
             {
                 if (this.strength == 1)
                 {
@@ -88,11 +87,14 @@ namespace AdventureGame
                 {
                     foreach (string _item in inventory)
                     {
-                        dropItem(_item);
+                        if (_player.inventory.Count < 4)
+                            dropItem(_item);
+                        else
+                            Console.WriteLine("I can't give you more because your bag is full");
                     }
 
                 }
-                else if (inventory.Count != 0)
+                else if (inventory.Count == 1 && inventory.Count != 0)
                     dropItem(inventory[0]);
                 else
                     Game._currentRoom.nPCs.Remove(this);
@@ -107,7 +109,11 @@ namespace AdventureGame
                 for (int i = 0; i < inventory.Count; i++)
                 {
                     if (Game._player.inventory.Count <= 4)
-                        this.dropItem("I give you this item: " + inventory[i]);
+                    {
+                        Console.WriteLine("I will give you: " + inventory[i]);
+                        this.dropItem(inventory[i]);
+
+                    }
                     else
                         Console.WriteLine("I can't give you an item, you already have enough");
                 }

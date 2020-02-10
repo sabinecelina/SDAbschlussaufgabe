@@ -52,6 +52,10 @@ namespace AdventureGame
                                     _door.isOpen = true;
                                     _isOpen = true;
                                 }
+                                if (input == "q")
+                                {
+                                    _isOpen = false;
+                                }
 
                             }
                             this.location = _door.LeadsTo().location;
@@ -111,7 +115,7 @@ namespace AdventureGame
                 inventory.Add(item);
                 if (item.Equals("gift"))
                 {
-                    string[] _gift = new string[] { "potion", "posion", "potion", "potion" };
+                    string[] _gift = new string[] { "posion", "posion", "posion", "posion" };
                     Random random = new Random();
                     int rnd = random.Next(0, 4);
                     item = _gift[rnd];
@@ -160,7 +164,7 @@ namespace AdventureGame
                             Game._player.inventory.Remove(_item);
                             Game._player.inventory.Remove(_object);
                         }
-                        else if (_object.Equals(Game._currentRoom.inventory[i]))
+                        else if (_object.Equals(Game._currentRoom.inventory[i]) && Game._currentRoom.inventory.Count >= 1)
                         {
                             Game._player.inventory.Remove(_item);
                             Game._currentRoom.inventory.Remove(_object);
@@ -229,7 +233,7 @@ namespace AdventureGame
                 _nPC.healthpoints -= (int)(healthpoints * damage);
             }
             Console.WriteLine("You attacked " + _nPC.name + ". His healthpoints now are: " + _nPC.healthpoints);
-            if (_nPC.healthpoints < 0)
+            if (_nPC.healthpoints <= 0)
                 _nPC.isAlive = false;
             return _nPC;
         }

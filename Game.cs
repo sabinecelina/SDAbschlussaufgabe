@@ -73,6 +73,7 @@ namespace AdventureGame
                         break;
                     case "p":
                         _currentHealthpoints = _player.TakePotion(_currentHealthpoints);
+                        _player.healthpoints = _currentHealthpoints;
                         break;
                     case "t":
                         for (int m = 0; m < _currentRoom.inventory.Count; m++)
@@ -84,10 +85,11 @@ namespace AdventureGame
                                 _currentRoom.inventory.Remove(_item);
                             }
                         }
+                        _player.healthpoints = _currentHealthpoints;
                         break;
                     case "d":
                         _player.dropItem(input[1]);
-                        _currentRoom.inventory.Add(_item);
+                        _currentRoom.inventory.Add(input[1]);
                         break;
                     case "u":
                         _player.UseItem(_player);
@@ -126,7 +128,8 @@ namespace AdventureGame
                             {
                                 foreach (NPC npc in _currentRoom.nPCs)
                                 {
-                                    _player.healthpoints = npc.AttackPlayer(_player);
+                                    if (npc.isAlive)
+                                        _currentHealthpoints = npc.AttackPlayer(_player);
 
                                 }
 
@@ -169,6 +172,8 @@ namespace AdventureGame
             {
                 Console.WriteLine(_player.endGameAdventure);
             }
+            else
+                Console.WriteLine("Your input was invalid, please try it again.");
             _game.PlayGame();
 
         }

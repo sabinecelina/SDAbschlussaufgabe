@@ -9,7 +9,7 @@
     "characteristics": "Librarian who guards the treasures of human history",
     "maxHealthpoints": 100,
     "location": 0,
-    "numberOfPotion": 2,
+    "numberOfPotion": 4,
     "startGameAdventure": "The Quest - Excalibur: It was the Excalibur sword - the sword that has been so faithful to you over the years - that hit you. A wound that does not stop bleeding, a wound for which there is no remedy except the sword itself. You have to find the room where the Excalibur is and defeat the monster in it. Go, you don't have enough time. ",
     "endGameAdventure": "You defeated the monster and found the key to open the last door. The power of Excalibur healed you. The wound is closed and the Excalibur is now obeying you again. Congratulations. "
 }
